@@ -1,15 +1,17 @@
 const { Router } = require("express");
 const {
+  getAllPokemons,
   getPokemon,
-  getPokemonById,
+  getDetail,
   createPokemonHandler,
 } = require("../handlers/pokemon");
 
 const pokemonRouter = Router();
 
 //GET
-pokemonRouter.get("/:id", getPokemon);
-pokemonRouter.get("/:name", getPokemon);
+pokemonRouter.get("/", getPokemon);
+pokemonRouter.get("/", getAllPokemons); //? aca deberia ir un handler getAllPokemons 
+pokemonRouter.get("/:id", getDetail);
 //POST
 pokemonRouter.post("/", createPokemonHandler);
 

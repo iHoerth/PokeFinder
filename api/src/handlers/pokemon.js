@@ -1,47 +1,57 @@
-const { createPokemon } = require("../controllers/pokemon");
+const {
+  createPokemon,
+  fetchPokemon,
+  fetchPokemonById,
+  fetchAllPokemon,
+} = require("../controllers/pokemon");
 
-//! CONTROLLERS ///////////
-const findPokemon = (nameOrId) => {
-  const allPokemon = [{name: 'Tangela'},{name: 'Growlithe',id:'1234'}];
-  if(!nameOrId) {
-    throw new Error('Invalid name or ID.')
-  } 
-  return allPokemon.find(poke => poke.id === nameOrId || poke.name === nameOrId)
-}
-
-//! /////////////////////
-
-const getPokemon = (req, res) => {
-  const { id, name } = req.params;
-  const result = findPokemon(id,name)
-  try {
-    res.status(200).json({result});
-  } catch (error) {
-    res.status(400).json({ err: err.message });
+const getPokemon = async (req, res, next) => {
+  const { name } = req.query;
+  if (name) {
+    try {
+      const result = await fetchPokemon(name);
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(400).json({error: error.message});
+    }
+  } else {
+    next();
   }
 };
 
-const getPokemonById = (req, res) => {
-  const { id } = req.params;
+const getAllPokemons = async (req, res) => {
   try {
-    res.status(200).json({ msg: `GETTING POKEMON WITH ID ${id}` });
+    const result = await fetchAllPokemon();
+    res.status(200).json(result);
   } catch (error) {
-    res.status(400).json({ err: err.message });
+    res.status(400).json({error: error.message});
+  }
+};
+
+const getDetail = async (req, res) => {
+  const { id } = req.params;
+  const source = isNaN(id) ? "db" : "api";
+  try {
+    const result = await fetchPokemonById(id, source);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({error: error.message});
   }
 };
 
 const createPokemonHandler = async (req, res) => {
   const body = req.body;
   try {
-    const result = await createPokemon(req.body);
+    const result = await createPokemon(body);
     res.status(200).json(result);
-  } catch (err) {
-    res.status(400).json({ err: err.message, body });
+  } catch (error) {
+    res.status(400).json({error: error.message});
   }
 };
 
 module.exports = {
+  getAllPokemons,
   getPokemon,
-  getPokemonById,
+  getDetail,
   createPokemonHandler,
 };

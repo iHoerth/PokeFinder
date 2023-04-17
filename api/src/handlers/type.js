@@ -1,7 +1,10 @@
-const getTypes = (req, res) => {
-  const { type } = req.params;
+const { createType, fetchTypes } = require('../controllers/type') 
+
+const getTypes = async (req, res) => {
+  // const { type } = req.params;
   try {
-    res.status(200).json({ msg: `GETTING ${type} POKEMONS` });
+    const result = await fetchTypes()
+    res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

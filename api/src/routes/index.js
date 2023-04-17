@@ -1,10 +1,10 @@
 const { Router } = require("express");
-const pokemonRouter = require("./pokemon");
-const typeRouter = require("./type");
+const pokemons = require("./pokemons");
+const types = require("./types");
 
 const router = Router();
 
-router.use("/pokemon", pokemonRouter);
-router.use("/type", typeRouter);
+router.use("/pokemons", pokemons);
+router.use("/types", types);
 
 module.exports = router;
