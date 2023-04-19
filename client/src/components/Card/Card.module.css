@@ -1,0 +1,39 @@
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0px;
+  transition: 150ms;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.typeImg{
+  margin-top: 5px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 260px;
+  min-width: 230px;
+  max-width: 300px;
+  width: 13.5%;
+  flex: 1;
+  margin:5px;
+  padding: 2px;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgb(145, 144, 144);
+  font: 500 14px;
+  transition: 200ms;
+}
+
+.container:hover{
+  filter: saturate(150%);
+  transform: scale(1.025);
+  box-shadow: 0 0 8px rgb(145, 144, 144);
+}

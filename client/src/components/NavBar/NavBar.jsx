@@ -1,76 +1,39 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import style from "./NavBar.module.css";
+import SearchBar from "../SearchBar/SearchBar";
+
 const NavBar = ({ setSearchValue }) => {
-  const [openCart, setOpenCart] = useState(false);
-  // const navigate = useNavigate();
-  // const handleLogOut = () => {
-  //   setUser();
-  // };
-
-  const showCart = () => {
-    setOpenCart(!openCart);
-  };
-
   return (
     <>
-      <div className="header">
-        <div className="NavBar">
+      <div className={style.header}>
+        <div className={style.NavBar}>
           <NavLink
-            className={({ isActive }) =>
-              isActive ? "navActive" : "navInactive"
-            }
+            className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
             to="/pokemons"
           >
             POKEDEX
           </NavLink>
-          <input
-            style={{
-              fontSize: "20px",
-              width: "600px",
-              height: "40px",
-              padding: "5px",
-            }}
-            onKeyUp={(event) => setSearchValue(event.target.value)}
-            id="searchInput"
-            name="searchInput"
-            placeholder="SEARCH POKEMON"
-            type="text"
-          />
+          <SearchBar setSearchValue={setSearchValue}/>
           <NavLink
-            className={({ isActive }) =>
-              isActive ? "navActive" : "navInactive"
-            }
+            className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
             to="/login"
           >
             SIGN IN
           </NavLink>
           <NavLink
-            className={({ isActive }) =>
-              isActive ? "navActive" : "navInactive"
-            }
+            className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
             to="/signup"
           >
             SIGN UP
           </NavLink>
           <NavLink
-            className={({ isActive }) =>
-              isActive ? "navActive" : "navInactive"
-            }
+            className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
             to="/pokemons"
           >
             LOG OUT
           </NavLink>
-          <div
-            className={openCart ? "navActive" : "navInactive"}
-          >
-          </div>
-          {/* {openCart ? (
-            <>
-              <div className="backgroundModal" onClick={showCart}></div>
-              <Cart setOpenCart={setOpenCart} />
-            </>
-          ) : null} */}
         </div>
       </div>
     </>
