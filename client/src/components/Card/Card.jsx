@@ -1,9 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getDetail } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
 import { toTitleCase } from "../../helpers/helpers";
 import style from "./Card.module.css";
 
 export const Card = ({ poke }) => {
   const [isHover, setIsHover] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleOnClick = () => {
+    dispatch(getDetail(poke));
+    navigate(`/pokemons/detail/${poke.id}`);
+  };
 
   const handleMouseEnter = () => {
     setIsHover(true);
@@ -16,9 +26,9 @@ export const Card = ({ poke }) => {
     <>
       <div
         className={style.container}
-        style={{border: '3px solid black'}}
         onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => handleMouseLeave()}
+        onClick={() => handleOnClick()}
       >
         <div className={style.content} style={{ cursor: "pointer" }}>
           <div className={style.typeImg}>

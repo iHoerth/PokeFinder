@@ -9,10 +9,8 @@ const {
 const pokemonRouter = Router();
 
 //GET
-pokemonRouter.get("/", getPokemon);
-pokemonRouter.get("/", getAllPokemons); //? aca deberia ir un handler getAllPokemons 
+pokemonRouter.get("/", getPokemon); 
 pokemonRouter.get("/:id", getDetail);
-//POST
 pokemonRouter.post("/", createPokemonHandler);
 
 module.exports = pokemonRouter;

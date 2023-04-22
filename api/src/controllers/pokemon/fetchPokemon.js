@@ -1,0 +1,32 @@
+const { Pokemon } = require("../../db");
+const axios = require("axios");
+const parsePokemon = require("../../helpers/parsePokemon");
+
+const BASE_URL = "https://pokeapi.co/api/v2";
+const START = 0;
+const LIMIT = 18;
+
+const fetchPokemon = async (nameOrId, source) => {
+  if (!nameOrId) {
+    throw new Error("Invalid name or ID.");
+  }
+  const pokemonData = (await axios.get(`${BASE_URL}/pokemon/${nameOrId}`)).data;
+  const parsedPokemon = parsePokemon(pokemonData, "api");
+  return parsedPokemon;
+};
+
+
+
+const fetchAllPokemon = async () => {
+  const url = `${BASE_URL}/pokemon?offset=${START}&limit=${LIMIT}`;
+  const fetchPokeUrls = (await axios(url)).data.results;
+  const pokemonFromApi = await Promise.all(fetchPokeUrls.map((poke) => fetchPokemon(poke.name)));
+  const pokemonFromDb = await Pokemon.findAll();
+
+  const pokemons = [...pokemonFromDb, ...pokemonFromApi];
+
+  return pokemons;
+};
+
+
+module.exports = { fetchPokemon, fetchAllPokemon };

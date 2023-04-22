@@ -1,4 +1,4 @@
-const { createType, fetchTypes } = require('../controllers/type') 
+const { createType, fetchTypes } = require('../controllers/type/type') 
 
 const getTypes = async (req, res) => {
   // const { type } = req.params;

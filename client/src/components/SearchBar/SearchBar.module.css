@@ -1,6 +1,33 @@
 .searchBar {
+  box-sizing: border-box;
   font-size: 20px;
   width: 600px;
-  height: 40px;
+  height: 100%;
   padding: 5px;
+  border-radius: 6px;
+}
+
+.container {
+  display: flex;
+  gap: 6px;
+  height: 50px;
+}
+
+.container button {
+  align-self: center;
+  width: 20%;
+  height: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: var(--creamBlue);
+  box-shadow: 1px 1px 1px rgba(23, 23, 23, 0.557);
+  cursor:pointer;
+  color: rgb(236, 236, 236);
+  transition: 0.045s;
+}
+
+.container button:hover {
+  background-color: var(--lighterBlue);
+  color:rgba(23, 23, 23, 0.861)
 }

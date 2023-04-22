@@ -1,3 +1,7 @@
+.homeContainer{
+  margin: 0px;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -8,8 +12,18 @@
   font-size: 18px;
 }
 
-/* CREO QUE LO QUE SIGUE ERA EL CART
-Y PUEDE SERVIR PARA EL RESPONSIVE */
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+  min-height: 150px;
+  margin: 20px auto;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+/* CREO QUE LO QUE SIGUE ERA EL CART DE LA APP ANTERIOR
+Y PUEDE SERVIR PARA LOS MEDIA QUERYS DE 400px APROX */
 
 .cart {
   position: fixed;

@@ -4,6 +4,7 @@ const types = require("./types");
 
 const router = Router();
 
+
 router.use("/pokemons", pokemons);
 router.use("/types", types);
 

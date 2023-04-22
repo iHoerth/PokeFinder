@@ -1,23 +1,42 @@
-export const ADD_FAVORITES = "ADD_FAVORITES";
-export const REMOVE_FAVORITES = "REMOVE_FAVORITES";
-export const LOGIN = "LOGIN";
-export const LOGOUT = "LOGOUT";
-export const GET_POKEMON = "GET_POKEMON"
-export const CLEAR_POKEMON = "CLEAR_POKEMON"
+import axios from "axios";
 
-export const getPokemon = (payload) => {
-  return {
-    type: GET_POKEMON,
-    payload: payload,
-  }
-}
+import {
+  ADD_FAVORITES,
+  REMOVE_FAVORITES,
+  GET_POKEMON,
+  CLEAR_POKEMON,
+  GET_DETAIL,
+  LOGIN,
+  LOGOUT,
+} from "./actionTypes";
 
-export const clearPokemon = (payload) => {
-  return {
-    type: CLEAR_POKEMON,
-    payload: payload,
-  }
-}
+export const getPokemon = () => {
+  return async function (dispatch) {
+    const response = await axios("http://localhost:3001/pokemons");
+    return dispatch({
+      type: GET_POKEMON,
+      payload: response.data,
+    });
+  };
+};
+
+export const clearPokemon = () => {
+  return async function (dispatch) {
+    return dispatch({
+      type: CLEAR_POKEMON,
+      payload: [],
+    });
+  };
+};
+
+export const getDetail = (payload) => {
+  return function (dispatch) {
+    return dispatch({
+      type: GET_DETAIL,
+      payload: payload,
+    });
+  };
+};
 
 export const addFavorites = (payload) => {
   return {
@@ -36,12 +55,12 @@ export const removeFavorites = (payload) => {
 export const login = (payload) => {
   return {
     type: LOGIN,
-    payload: payload
-  }
-}
+    payload: payload,
+  };
+};
 
 export const logout = () => {
   return {
     type: LOGOUT,
-  }
-}
+  };
+};
