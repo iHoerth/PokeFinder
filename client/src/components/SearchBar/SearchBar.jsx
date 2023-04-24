@@ -7,10 +7,8 @@ import style from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const [searchValue, setSearchValue] = useState("");
-  // Utilice dispatch en vez de pasar una funcion por props para filtrar,
-  //  porque si en el fetch original yo no traigo todos los pokemons
   const dispatch = useDispatch();
-  
+
   const navigate = useNavigate();
 
   const handleSearch = async () => {
@@ -22,7 +20,7 @@ const SearchBar = () => {
       dispatch(getPokemons());
     }
   };
-  
+
   return (
     <>
       <div className={style.container}>
@@ -31,7 +29,7 @@ const SearchBar = () => {
           onKeyUp={(e) => setSearchValue(e.target.value)}
           id="searchInput"
           name="searchInput"
-          placeholder="POKEMON NAME"
+          placeholder="Name..."
           type="text"
         />
         <button className={style.searchButton} onClick={() => handleSearch()}>

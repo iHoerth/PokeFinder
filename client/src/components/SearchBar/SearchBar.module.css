@@ -2,8 +2,7 @@
   box-sizing: border-box;
   font-size: 20px;
   width: 600px;
-  min-width: 180px;
-
+  min-width: 70px;
   height: 100%;
   padding: 5px;
   border-radius: 6px;
@@ -11,7 +10,7 @@
 
 .container {
   display: flex;
-  min-width: 200px;
+  min-width: 100px;
   gap: 6px;
   height: 60px;
 }
@@ -33,5 +32,4 @@
 
 .container button:hover {
   background-color: var(--lighterBlue);
-  color:rgba(23, 23, 23, 0.861)
 }

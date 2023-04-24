@@ -23,7 +23,6 @@ export const getTypes = () => {
 };
 
 export const getPokemons = () => {
-  // const name = payload?.name;
   return async function (dispatch) {
     const response = await axios(`http://localhost:3001/pokemons`);
     return dispatch({
@@ -34,10 +33,7 @@ export const getPokemons = () => {
 };
 
 export const getPokemon = (name) => {
-  // const name = payload?.name;
-  const query = name ? `?name=${name}` : "";
   return async function (dispatch) {
-    // const response = await axios(`http://localhost:3001/pokemons${query}`);
     const pokemon = await axios(`http://localhost:3001/pokemons`);
     const filteredPokemon = pokemon.data.filter(
       (poke) =>

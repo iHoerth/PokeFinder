@@ -10,6 +10,8 @@ export const Card = ({ poke }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const types = poke.types || poke.Types
+
   const handleOnClick = () => {
     dispatch(getDetail(poke));
     navigate(`/pokemons/detail/${poke.id}`);
@@ -32,14 +34,18 @@ export const Card = ({ poke }) => {
       >
         <div className={style.content} style={{ cursor: "pointer" }}>
           <div className={style.typeImg}>
-            {poke.types.map((type) => (
+            {/* poke.hasOwnProperty("types") && */}
+            {
+            types.map((type) => (
               <img
-                key={poke.id + type}
-                className={"icon " + type}
-                src={"/Images/" + type + ".svg"}
+                key={`${poke.id}  ${poke.source === "bd" ? type.name : type}`}
+                className={`icon ${poke.source === "bd" ? type.name : type}`}
+                src={`/Images/${poke.source === "bd" ? type.name : type}.svg`}
                 alt=""
               />
-            ))}
+            ))
+   
+          }
           </div>
           <div>{`#` + poke.id}</div>
           <div style={{ fontSize: "24px" }}>{toTitleCase(poke.name)}</div>

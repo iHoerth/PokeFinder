@@ -37,12 +37,12 @@ const Create = () => {
             value: "",
           },
           spatk: {
-            name: "Special Attack",
+            name: "Sp. Att",
             type: "number",
             value: "",
           },
           spdef: {
-            name: "Special Defense",
+            name: "Sp. Def",
             type: "number",
             value: "",
           },

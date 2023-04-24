@@ -1,4 +1,4 @@
-const { fetchPokemon, fetchAllPokemon } = require('../controllers/pokemon/fetchPokemon');
+const { fetchPokemon, fetchAllPokemon } = require("../controllers/pokemon/fetchPokemon");
 const { fetchPokemonById } = require("../controllers/pokemon/fetchPokemonById");
 const { createPokemon } = require("../controllers/pokemon/createPokemon");
 
@@ -24,9 +24,21 @@ const getDetail = async (req, res) => {
 };
 
 const createPokemonHandler = async (req, res) => {
-  const body = req.body;
+  const { name, img, hp, atk, def, spatk, spdef, speed, weight, height, type, subtype } = req.body;
   try {
-    const result = await createPokemon(body);
+    const result = await createPokemon(
+      name,
+      img,
+      hp,
+      atk,
+      def,
+      spatk,
+      spdef,
+      speed,
+      weight,
+      height,
+      [type, subtype]
+    );
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });

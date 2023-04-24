@@ -31,7 +31,7 @@ export const validate = (inputs) => {
 
   for (const field of formFields) {
     if (!inputs[field]) {
-      errors[field] = `${field} requerido.`;
+      errors[field] = `${toTitleCase(field)} requerido`;
     }
   }
   console.log(errors);

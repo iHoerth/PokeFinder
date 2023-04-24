@@ -12,9 +12,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  min-width: 300px;
-  width: 600px;
+  /* min-width: 300px; */
+  width: 325px;
   height: 600px;
   height: auto;
   min-height: 220px;
@@ -32,13 +31,11 @@
 
 .content {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 30px;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0 20px 0px;
   height: auto;
   width: 100%;
-  gap: 30px 0px;
 }
 
 .contentOdd {
@@ -48,29 +45,40 @@
 
 .field {
   display: flex;
-  flex-direction: column;
-  width: 40%;
+  flex-direction: row;
+  width: 100%;
+  gap: 6px;
 }
 
 .formFieldText {
-  width: 100%;
+  text-align: end;
+  padding: 0;
+  min-width: 150px;
   color: white;
-  margin: 8px 0 8px 0;
-  font-size: 18px;
-  text-align: start;
+  font-size: 16px;
 }
 
 .formFieldInput {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  border-radius: 4px;
-  line-height: 30px;
+  flex: 1;
+  min-width: 20px;
+  padding-left: 4px;
+  border-radius: 8px;
+  line-height: 34px;
   border: 1px solid gray;
 }
 
+.formFieldInput:focus {
+  outline: 2px solid var(--creamBlue);
+  outline-offset: -4px;
+}
+
+.formFieldInput::placeholder {
+  font-size: 15px;
+  color: black;
+}
+
 .formButton {
-  width: 140px;
+  width: 100%;
   height: 50px;
   border-radius: 6px;
   font-size: 16px;
@@ -84,36 +92,52 @@
 
 .formButton:hover {
   background-color: var(--lighterBlue);
-  color: rgba(23, 23, 23, 0.861);
 }
 
 .warning {
   border: solid red 1px;
-  border-radius: 0.2em;
+}
+
+.warning::placeholder {
+  color: red;
 }
 
 .danger {
-  width: 100%;
   font-size: 15px;
   color: red;
 }
 
-@media (max-width: 550px) {
-  .wrapper {
-    height: auto;
-  }
+.danger::placeholder {
+  font-size: 15px;
+  color: red;
+}
+
+
+@media (max-width: 370px) {
+
   .container {
     height: 100%;
+    padding: 10px;
+    left: 0px;
+    width: 100%;
+    padding: 10px;
   }
   .content {
     flex-direction: column;
     flex-wrap: no-wrap;
+    min-width: none;
   }
   .field {
-    width: 90%;
+    min-width: none;
+    width: 100%;
   }
   .formButton {
+    min-width: none;
     margin-top: 10px;
-    width: 80%;
+    width: 100%;
+  }
+  .formFieldInput {
+    min-width: 1px;
+    width: 100%;
   }
 }

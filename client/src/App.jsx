@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import Landing from "./views/Landing/Landing";
 import Home from "./views/Home/Home";
@@ -7,16 +8,20 @@ import Detail from "./views/Detail/Detail";
 import Create from "./views/Create/Create";
 import Login from "./views/Login/Login";
 import Register from "./views/Register/Register";
-import Form from "./components/Form/Form";
+
+import { getTypes } from "./redux/actions";
 
 import "./App.css";
 import "./styles/type-icons.css";
 
-import { validate } from "./helpers/helpers";
 
 function App() {
+  const dispatch = useDispatch();
+
+
   useEffect(() => {
     document.title = "POKEAPP";
+    dispatch(getTypes())
   }, []);
 
   return (

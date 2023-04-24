@@ -6,27 +6,31 @@ import axios from "axios";
 import NavBar from "../../components/NavBar/NavBar";
 import Loading from "../../components/Loading/Loading";
 
-import { Stats } from "./Stats";
-import { toTitleCase } from "../../helpers/helpers";
-
-import { CardDetail, Section, Content, Type, Title, Container } from "./styledComponents";
+import { StatsBox } from "../../components/StatsBox/StatsBox";
 import style from "./Detail.module.css";
+
+import { toTitleCase } from "../../helpers/helpers";
 
 const Detail = () => {
   const [pokemon, setPokemon] = useState({});
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+
   const detail = useSelector((state) => state.detail);
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
     if (Object.keys(detail).length) {
-      setPokemon(detail);
+      const correctTypes =
+        detail.Types
+          ? { ...detail, types: detail.Types.map((type) => type.name) }
+          : detail;
+      setPokemon(correctTypes);
       setLoading(false);
-      console.log(detail);
+      console.log(correctTypes);
     } else {
-      const parsedid = toTitleCase(id);
+      const parsedid = isNaN(id) ? id : toTitleCase(id);
       navigate(`/pokemons/detail/${toTitleCase(id)}`);
       axios(`http://localhost:3001/pokemons/${parsedid}`).then((res) => {
         setPokemon(res.data);
@@ -43,44 +47,59 @@ const Detail = () => {
   return (
     <>
       <NavBar />
-      <Container>
-        <CardDetail>
-          <Section style={{ flexDirection: "row" }}>
-            <Content style={{ fontSize: "48px" }}>{pokemon.name}</Content>
-            <Content style={{ flex: "0.2" }}>#{pokemon.id}</Content>
-          </Section>
+      <div className={style.container} style={{ backgroundColor: `var(--${pokemon.types[0]}Bg)` }}>
+        <div
+          className={style.cardDetail}
+          style={{ backgroundColor: `var(--${pokemon.types[0]}Bg)` }}
+        >
+          <div className={style.section} style={{ backgroundColor: `var(--${pokemon.types[0]})` }}>
+            <div className={style.content} style={{ fontSize: "48px" }}>
+              {pokemon.name}
+            </div>
+            <div className={style.content} style={{ flex: "0.2" }}>
+              #{pokemon.id}
+            </div>
+          </div>
 
-          <Section>
-            <Content>
+          <div>
+            <div className={style.content}>
               <img src={pokemon.img} alt="" />
-            </Content>
-          </Section>
+            </div>
+          </div>
 
-          <Section>
-            <Title>TYPES</Title>
-            <Content>
+          <div className={style.section} style={{ backgroundColor: `var(--${pokemon.types[0]})` }}>
+            <div className={style.title}>TYPES</div>
+            <div className={style.content}>
               <div style={{ display: "flex", gap: "32px", padding: "5px" }}>
                 {pokemon.types.map((type) => (
-                  <Type color={type}>{toTitleCase(type)}</Type>
+                  <div className={style.type} style={{ backgroundColor: `${type}` }}>
+                    {toTitleCase(type)}
+                  </div>
                 ))}
               </div>
-            </Content>
-          </Section>
+            </div>
+          </div>
 
           <div style={{ display: "flex", gap: "4px" }}>
-            <Section>
-              <Title>Weight</Title>
-              <Content>{pokemon.weight} kg</Content>
-            </Section>
+            <div
+              className={style.section}
+              style={{ backgroundColor: `var(--${pokemon.types[0]})` }}
+            >
+              <div className={style.title}>Weight</div>
+              <div className={style.content}>{pokemon.weight} kg</div>
+            </div>
 
-            <Section>
-              <Title>Height</Title>
-              <Content>{pokemon.height} m</Content>
-            </Section>
+            <div
+              className={style.section}
+              style={{ backgroundColor: `var(--${pokemon.types[0]})` }}
+            >
+              <div className={style.title}>Height</div>
+              <div className={style.content}>{pokemon.height} m</div>
+            </div>
           </div>
-        </CardDetail>
-        <Stats pokemon={pokemon} />
-      </Container>
+        </div>
+        <StatsBox stats={pokemon.stats} />
+      </div>
     </>
   );
 };

@@ -12,22 +12,22 @@ const Register = () => {
         formName='Register'
         fields={{
           user: {
-            name: "Usuario",
+            name: "User",
             type: "text",
             value: "",
           },
           confirmUser: {
-            name: "Confirmar Usuario",
+            name: "Confirm User",
             type: "text",
             value: "",
           },
           password: {
-            name: "Contraseña",
+            name: "Password",
             type: "text",
             value: "",
           },
           confirmPassword: {
-            name: "Confirmar contraseña",
+            name: "Confirm Password",
             type: "text",
             value: "",
           },
@@ -36,8 +36,8 @@ const Register = () => {
             type: "number",
             value: "",
           },
-          confirmarEmail: {
-            name: "Confirmar email",
+          confirmEmail: {
+            name: "Confirm email",
             type: "number",
             value: "",
           },

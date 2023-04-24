@@ -41,15 +41,16 @@ const Form = ({ formName, fields, button, action, validator }) => {
           {formFields.map((field) => {
             return (
               <div key={field} className={style.field}>
-                <label className={`${style.formFieldText} ${errors[field] && style.danger}`}>
-                  {errors[field] || `${fields[field].name}`}
-                </label>
+                {/* <label className={`${style.formFieldText}`}>
+                  {fields[field].name}
+                </label> */}
                 <input
                   name={`${field}`}
                   type={fields[field].type}
                   onChange={(e) => handleInputChange(e)}
                   value={data[fields[field]]}
-                  className={`${style.formFieldInput} ${errors[field] && style.warning}`}
+                  className={`${style.formFieldInput} ${errors[field] && style.warning} `}
+                  placeholder={errors[field] || fields[field].name}
                 />
               </div>
             );

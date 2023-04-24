@@ -5,12 +5,12 @@ import { useParams } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import NavBar from "../../components/NavBar/NavBar";
 import Loading from "../../components/Loading/Loading";
+import Pagination from "../../components/Pagination/Pagination";
 
 import { getPokemons, clearPokemon } from "../../redux/actions";
 import style from "./Home.module.css";
-// import { v4 } from "uuid";
 
-const Home = ({ poke }) => {
+const Home = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
