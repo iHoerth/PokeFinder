@@ -1,3 +1,13 @@
+@import "../../helpers/variables.css";
+/* @import url('https://fonts.cdnfonts.com/css/pokemon-solid'); */
+@font-face {font-family: "Pokemon"; src: url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.eot"); src: url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.woff") format("woff"), url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.svg#Pokemon") format("svg"); }
+/* .NavBar > * {
+  -webkit-text-stroke: 1px var(--creamBlue);
+  font-family: 'Pokemon solid';
+  color: var(--yellow);
+  text-decoration: none;
+} */
+
 .NavBar {
   display: flex;
   justify-content: space-between;
@@ -16,10 +26,13 @@
   align-items: center;
   text-align: center;
   padding: 10px;
-  color:white;
   border-radius: 10px;
   background-color: #c53030;
-  font-size: 18px;
+  -webkit-text-stroke: 1px var(--creamBlue);
+  font-family: 'Pokemon';
+  color: var(--yellow);
+  text-decoration: none;
+  font-size: 24px;
   font-weight: 500;
 }
 
@@ -27,9 +40,12 @@
   display: flex;
   align-items: center;
   text-align: center;
+  -webkit-text-stroke: 1px var(--creamBlue);
+  font-family: 'Pokemon';
+  color: var(--yellow);
+  text-decoration: none;
   padding: 10px;
-  color:white;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 500;
 }
 
@@ -44,13 +60,16 @@
 }
 
 .header-logo > img {
-  /* margin: auto 0; */
   height: 40px;
   width: 40px;
 }
 
 
+
 @media (max-width: 1100px) {
+  .NavBar{
+    justify-content: center;
+  }
   .navActive {
     display: none;
   }

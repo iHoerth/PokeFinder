@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const {
-  getAllPokemons,
   getPokemon,
   getDetail,
   createPokemonHandler,

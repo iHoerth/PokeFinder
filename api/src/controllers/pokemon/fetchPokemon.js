@@ -4,18 +4,16 @@ const parsePokemon = require("../../helpers/parsePokemon");
 
 const BASE_URL = "https://pokeapi.co/api/v2";
 const START = 0;
-const LIMIT = 18;
+const LIMIT = 649;
 
 const fetchPokemon = async (nameOrId, source) => {
   if (!nameOrId) {
     throw new Error("Invalid name or ID.");
   }
-  const pokemonData = (await axios.get(`${BASE_URL}/pokemon/${nameOrId}`)).data;
-  const parsedPokemon = parsePokemon(pokemonData, "api");
+  const pokemonData = (await axios.get(`${BASE_URL}/pokemon/${nameOrId.toLowerCase()}`));
+  const parsedPokemon = parsePokemon(pokemonData.data, "api");
   return parsedPokemon;
 };
-
-
 
 const fetchAllPokemon = async () => {
   const url = `${BASE_URL}/pokemon?offset=${START}&limit=${LIMIT}`;

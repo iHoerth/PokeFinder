@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import SearchBar from "../SearchBar/SearchBar";
@@ -11,33 +10,27 @@ const NavBar = ({ setSearchValue }) => {
         className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
         to="/pokemons"
       >
-        POKEDEX
+        PokeDex
       </NavLink>
       <NavLink
         className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
         to="/create"
       >
-        CREATE
+        Create
       </NavLink>
       <SearchBar setSearchValue={setSearchValue} />
       <NavLink
         className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
         to="/login"
       >
-        LOG IN
+        Log In
       </NavLink>
       <NavLink
         className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
         to="/register"
       >
-        REGISTER
+        Register
       </NavLink>
-      {/* <NavLink
-            className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
-            to="/pokemons"
-          >
-            LOG OUT
-          </NavLink> */}
     </div>
   );
 };

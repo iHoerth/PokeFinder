@@ -11,11 +11,8 @@ const Landing = () => {
 
   return (
     <div className={style.wrapper}>
-      <h1>PROYECTO INDIVIDUAL</h1>
+      <img src='pi.png' alt='' style={{width:'50%',marginTop:'20px'}}/>
       <div className={style.container}>
-        {/* <div className={style.fieldText}>
-          BIENVENIDOS AL MEJOR PI DE POKEMONES QUE VERAN EN SUS VIDAS! XD
-        </div> */}
         <button onClick={() => handleNavigate(`/pokemons`)} className={style.button}>
           GOTTA FIND'EM ALL!
         </button>

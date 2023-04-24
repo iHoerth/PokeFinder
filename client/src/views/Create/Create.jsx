@@ -1,15 +1,85 @@
-import React from 'react'
-import CreateForm from '../../components/Form/CreateForm'
+import React from "react";
+import Form from "../../components/Form/Form";
 import NavBar from "../../components/NavBar/NavBar";
+
+import { validate } from "../../helpers/helpers";
 
 const Create = () => {
   return (
     <>
       <NavBar />
-      <CreateForm />
+      <Form
+        formName='Create Pokemon'
+        fields={{
+          name: {
+            name: "Nombre",
+            type: "text",
+            value: "",
+          },
+          img: {
+            name: "Imagen",
+            type: "text",
+            value: "",
+          },
+          hp: {
+            name: "HP",
+            type: "number",
+            value: "",
+          },
+          atk: {
+            name: "Attack",
+            type: "number",
+            value: "",
+          },
+          def: {
+            name: "Defense",
+            type: "number",
+            value: "",
+          },
+          spatk: {
+            name: "Special Attack",
+            type: "number",
+            value: "",
+          },
+          spdef: {
+            name: "Special Defense",
+            type: "number",
+            value: "",
+          },
+          speed: {
+            name: "Speed",
+            type: "number",
+            value: "",
+          },
+          weight: {
+            name: "Peso",
+            type: "number",
+            value: "",
+          },
+          height: {
+            name: "Altura",
+            type: "number",
+            value: "",
+          },
+          type: {
+            name: "Tipo",
+            type: "text",
+            value: "",
+          },
+          subType: {
+            name: "Sub Tipo",
+            type: "text",
+            value: "",
+          },
+        }}
+        button={{
+          value: "Crear Pokemon!",
+          type: "submit",
+        }}
+        action={validate}
+      />
     </>
-  )
-}
+  );
+};
 
-export default Create
-
+export default Create;

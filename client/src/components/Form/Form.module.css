@@ -1,34 +1,55 @@
 @import "../../helpers/variables.css";
 
-.formWrapper {
-  border: 1px solid black;
+.wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
   align-content: center;
   height: calc(100vh - 102px);
+  height: auto;
 }
 
-.formContainer {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  /* box-sizing: content-box; */
-  /* margin: auto auto; */
-  padding: 20px 20px 10px 20px;
+  min-width: 300px;
+  width: 600px;
+  height: 600px;
+  height: auto;
   min-height: 220px;
-  width: 400px;
-  min-width: 210px;
+  margin-top: 50px;
+  padding: 20px 20px 20px 20px;
   background-color: var(--creamRed);
   border-radius: 4px;
   box-shadow: 2px 2px 2px;
 }
 
-.formFieldContainer {
+.container > h1 {
+  color: rgb(236, 236, 236);
+  margin-bottom: 0px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  height: auto;
+  width: 100%;
+  gap: 30px 0px;
+}
+
+.contentOdd {
   display: flex;
   flex-direction: column;
-  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 }
 
 .formFieldText {
@@ -49,25 +70,21 @@
 }
 
 .formButton {
-  align-self: center;
-  justify-self: flex-end;
-  width: 100px;
-  height: 40px;
-  margin-top: 20px;
+  width: 140px;
+  height: 50px;
   border-radius: 6px;
-  color: white;
   font-size: 16px;
   font-weight: 550;
   background-color: var(--creamBlue);
   box-shadow: 1px 1px 1px rgba(23, 23, 23, 0.557);
-  cursor:pointer;
+  cursor: pointer;
   color: rgb(236, 236, 236);
   transition: 0.075s;
 }
 
 .formButton:hover {
   background-color: var(--lighterBlue);
-  color:rgba(23, 23, 23, 0.861)
+  color: rgba(23, 23, 23, 0.861);
 }
 
 .warning {
@@ -79,4 +96,24 @@
   width: 100%;
   font-size: 15px;
   color: red;
+}
+
+@media (max-width: 550px) {
+  .wrapper {
+    height: auto;
+  }
+  .container {
+    height: 100%;
+  }
+  .content {
+    flex-direction: column;
+    flex-wrap: no-wrap;
+  }
+  .field {
+    width: 90%;
+  }
+  .formButton {
+    margin-top: 10px;
+    width: 80%;
+  }
 }

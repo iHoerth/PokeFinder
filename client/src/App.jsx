@@ -6,13 +6,15 @@ import Home from "./views/Home/Home";
 import Detail from "./views/Detail/Detail";
 import Create from "./views/Create/Create";
 import Login from "./views/Login/Login";
-import NavBar from "./components/NavBar/NavBar";
+import Register from "./views/Register/Register";
+import Form from "./components/Form/Form";
 
 import "./App.css";
 import "./styles/type-icons.css";
 
-function App() {
+import { validate } from "./helpers/helpers";
 
+function App() {
   useEffect(() => {
     document.title = "POKEAPP";
   }, []);
@@ -22,13 +24,14 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/pokemons?name" element={<Home />} />
           <Route path="/pokemons/" element={<Home />} />
           <Route path="/pokemons/detail/:id" element={<Detail />} />
-          <Route path="/pokemons/?name=:name" element={<Home />} />
           <Route path="/create" element={<Create />} />
-          
+
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
         </Routes>
       </div>
     </BrowserRouter>

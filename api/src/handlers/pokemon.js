@@ -1,10 +1,3 @@
-// const {
-//   createPokemon,
-//   fetchPokemon,
-//   fetchPokemonById,
-//   fetchAllPokemon,
-// } = require("../controllers/pokemon/pokemon");
-
 const { fetchPokemon, fetchAllPokemon } = require('../controllers/pokemon/fetchPokemon');
 const { fetchPokemonById } = require("../controllers/pokemon/fetchPokemonById");
 const { createPokemon } = require("../controllers/pokemon/createPokemon");
@@ -12,7 +5,6 @@ const { createPokemon } = require("../controllers/pokemon/createPokemon");
 const getPokemon = async (req, res) => {
   const { name } = req.query;
   try {
-    console.log(name, " ?name");
     const result = name ? await fetchPokemon(name) : await fetchAllPokemon();
     res.status(200).json(result);
   } catch (error) {

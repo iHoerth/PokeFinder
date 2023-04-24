@@ -1,5 +1,7 @@
 import {
+  GET_POKEMONS,
   GET_POKEMON,
+  GET_TYPES,
   CLEAR_POKEMON,
   ADD_FAVORITES,
   REMOVE_FAVORITES,
@@ -8,9 +10,9 @@ import {
   LOGOUT,
 } from "./actionTypes";
 
-
 const initialState = {
   pokemon: [],
+  types: [],
   detail: {},
   myFavorites: [],
   access: false,
@@ -19,14 +21,20 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case GET_POKEMONS:
+      return { ...state, pokemon: [...action.payload] };
+
     case GET_POKEMON:
       return { ...state, pokemon: [...action.payload] };
+
+    case GET_TYPES:
+      return { ...state, types: [...action.payload] };
 
     case CLEAR_POKEMON:
       return { ...state, pokemon: [] };
 
     case GET_DETAIL:
-      return {...state, detail: action.payload}
+      return { ...state, detail: action.payload };
 
     case ADD_FAVORITES:
       return { ...state, myFavorites: [...state.myFavorites, action.payload] };
