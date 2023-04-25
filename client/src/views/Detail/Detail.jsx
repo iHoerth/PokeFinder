@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import Loading from "../../components/Loading/Loading";
 
@@ -12,25 +12,35 @@ import style from "./Detail.module.css";
 import { toTitleCase } from "../../helpers/helpers";
 
 const Detail = () => {
+  const { id } = useParams();
   const [pokemon, setPokemon] = useState({});
+  const [idSetter, setIdSetter] = useState(0);
   const [loading, setLoading] = useState(true);
 
   const detail = useSelector((state) => state.detail);
   const navigate = useNavigate();
 
-  const { id } = useParams();
+  const handleNext = () => {
+    if (Number(id) >= 151) return;
+    setIdSetter(idSetter + 1);
+    navigate(`/pokemons/detail/${Number(id) + 1}`);
+  };
+
+  const handlePrev = () => {
+    if (Number(id) <= 1) return;
+    setIdSetter(idSetter - 1);
+    navigate(`/pokemons/detail/${idSetter}`);
+  };
 
   useEffect(() => {
+    setIdSetter(Number(id))
     if (Object.keys(detail).length) {
-      const correctTypes =
-        detail.Types
-          ? { ...detail, types: detail.Types.map((type) => type.name) }
-          : detail;
-      setPokemon(correctTypes);
+      console.log('MOUNTED')
+      setPokemon(detail);
       setLoading(false);
-      console.log(correctTypes);
+      console.log(detail);
     } else {
-      const parsedid = isNaN(id) ? id : toTitleCase(id);
+      const parsedid = toTitleCase(id);
       navigate(`/pokemons/detail/${toTitleCase(id)}`);
       axios(`http://localhost:3001/pokemons/${parsedid}`).then((res) => {
         setPokemon(res.data);
@@ -47,6 +57,15 @@ const Detail = () => {
   return (
     <>
       <NavBar />
+      <Link to={"/pokemons"}>
+        <button className={style.btnBack}>Back</button>
+      </Link>
+      <button className={style.btnBack} onClick={handlePrev}>
+        PREVIOUS
+      </button>
+      <button className={style.btnBack} onClick={handleNext}>
+        NEXT
+      </button>
       <div className={style.container} style={{ backgroundColor: `var(--${pokemon.types[0]}Bg)` }}>
         <div
           className={style.cardDetail}

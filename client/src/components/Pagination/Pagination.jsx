@@ -1,40 +1,50 @@
 import React from "react";
-import styles from "../Pagination/Pagination.module.css";
+import style from "../Pagination/Pagination.module.css";
 
-const Pagination = ({ pokePerPage, pagination, allPoke, currentPage }) => {
-  const pagesNumber = [];
+import { calculateMaxPages } from "../../helpers/calculateMaxPages";
 
-  for (let i = 1; i <= Math.ceil(allPoke.length / pokePerPage); i++) {
-    pagesNumber.push(i);
-  }
+const Pagination = ({ pokePerPage, setPageValue, allPoke, currentPage }) => {
+  const pages = [];
+  calculateMaxPages(allPoke, pokePerPage, pages);
 
   const handlerPrev = () => {
     if (currentPage === 1) return;
-    pagination(currentPage - 1);
+    setPageValue(currentPage - 1);
   };
 
   const handlerNext = () => {
-    if (currentPage === pagesNumber.length) return;
-    pagination(currentPage + 1);
+    if (currentPage === pages.length) return;
+    setPageValue(currentPage + 1);
   };
 
   return (
-    <div className={styles.container}>
-      <div onClick={handlerPrev} className={styles.prevNext}>
-        <h4>Prev</h4>
-      </div>
-      {pagesNumber &&
-        pagesNumber.map((page) => {
-          return (
-            <div key={page} className={styles.pages}>
-              <h2 className={styles.pagesNumber} onClick={() => pagination(page)}>
-                {page}
-              </h2>
-            </div>
-          );
-        })}
-      <div onClick={handlerNext} className={styles.prevNext}>
-        <h4>Next</h4>
+    <div className={style.wrapper}>
+      <div className={style.container}>
+        <div onClick={handlerPrev} className={style.prevNext}>
+          <h4>{`<<`}</h4>
+        </div>
+
+        <h2  className={style.currentPage}>Page {currentPage}</h2>
+
+        <div className={style.pagesContainer}>
+          {pages &&
+            pages.map((page) => {
+              return (
+                <div
+                  key={page}
+                  onClick={() => setPageValue(page)}
+                  className={`${style.pages} ${currentPage === page ? style.pressed : ""}`}
+                >
+                  <h2>{page}</h2>
+                </div>
+              );
+            })}
+        </div>
+
+        <div onClick={handlerNext} className={style.prevNext}>
+          <h4>{`>>`}</h4>
+        </div>
+
       </div>
     </div>
   );

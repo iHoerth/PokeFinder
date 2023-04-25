@@ -1,20 +1,14 @@
 .homeContainer{
   margin: 0px;
-}
-
-.container {
   display: flex;
-  flex-wrap: wrap;
-  width: 80vw;
-  min-height: 150px;
-  margin: 20px auto;
-  border-radius: 10px;
-  font-size: 18px;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .cardContainer {
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
   width: 80vw;
   min-height: 150px;
   margin: 20px auto;
@@ -24,6 +18,8 @@
 
 /* CREO QUE LO QUE SIGUE ERA EL CART DE LA APP ANTERIOR
 Y PUEDE SERVIR PARA LOS MEDIA QUERYS DE 400px APROX */
+
+
 
 .cart {
   position: fixed;

@@ -9,7 +9,7 @@ import Create from "./views/Create/Create";
 import Login from "./views/Login/Login";
 import Register from "./views/Register/Register";
 
-import { getTypes } from "./redux/actions";
+import { getTypes, getPokemons } from "./redux/actions";
 
 import "./App.css";
 import "./styles/type-icons.css";
@@ -22,7 +22,11 @@ function App() {
   useEffect(() => {
     document.title = "POKEAPP";
     dispatch(getTypes())
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getPokemons())
+  },[dispatch])  
 
   return (
     <BrowserRouter>

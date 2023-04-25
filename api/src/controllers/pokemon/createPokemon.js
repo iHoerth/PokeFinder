@@ -10,9 +10,9 @@ const createPokemon = async (
   speed,
   weight,
   height,
-  types //array!!!!!!
+  type,
+  subType
 ) => {
-  // const { name, img, hp, atk, def, spatk, spdef, speed, weight, height, type, subtype } = pokemon;
 
   let newPoke = await Pokemon.create({
     name,
@@ -26,8 +26,9 @@ const createPokemon = async (
     weight,
     height,
   });
-
+  let types = [type,subType]
   let typesDb = await Type.findAll({ where: { name: types } });
+  console.log(typesDb, 'TYPES DB')
   await newPoke.addTypes(typesDb);
 
   const response = await Pokemon.findByPk(newPoke.id, {

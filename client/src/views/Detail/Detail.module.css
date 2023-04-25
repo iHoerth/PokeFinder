@@ -1,5 +1,3 @@
-
-
 .title {
   font-size: 48px;
 }
@@ -72,6 +70,34 @@
   font-weight: 500;
   font-size: 12px;
   flex: 0.05;
+}
+
+.btnBack,
+.btnModify,
+.btnDelete {
+  width: 70px;
+  height: 40px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 550;
+  background-color: var(--creamBlue);
+  box-shadow: 1px 1px 1px rgba(23, 23, 23, 0.557);
+  cursor: pointer;
+  color: rgb(236, 236, 236);
+  transition: 0.075s;
+}
+
+.btnBack:hover,
+.btnDelete:hover,
+.btnModify:hover {
+  background-color: var(--lighterBlue);
+  box-shadow: none;
+  transform: translatey(1px) translateX(1px);
+  animation: ani9 0.2s ease-in-out infinite alternate;
+}
+
+.btnDelete {
+  margin-left: calc(80%);
 }
 
 @media (width: 1100px) {

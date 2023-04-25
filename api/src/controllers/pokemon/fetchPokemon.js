@@ -27,7 +27,6 @@ const fetchAllPokemon = async () => {
   const parsedPokemonDb = parsePokemonDb(pokemonFromDb)
 
   const pokemons = [...parsedPokemonDb, ...pokemonFromApi];
-  console.log(pokemons[0]);
   return pokemons;
 };
 

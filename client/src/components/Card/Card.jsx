@@ -31,16 +31,16 @@ export const Card = ({ poke }) => {
         onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => handleMouseLeave()}
         onClick={() => handleOnClick()}
+        style={{ cursor: "pointer" }}
       >
-        <div className={style.content} style={{ cursor: "pointer" }}>
+        <div className={style.content}>
           <div className={style.typeImg}>
-            {/* poke.hasOwnProperty("types") && */}
             {
             types.map((type) => (
               <img
-                key={`${poke.id}  ${poke.source === "bd" ? type.name : type}`}
-                className={`icon ${poke.source === "bd" ? type.name : type}`}
-                src={`/Images/${poke.source === "bd" ? type.name : type}.svg`}
+                key={`${poke.id} ${type}`}
+                className={`icon ${type}`}
+                src={`/Images/${type}.svg`}
                 alt=""
               />
             ))
@@ -49,7 +49,7 @@ export const Card = ({ poke }) => {
           </div>
           <div>{`#` + poke.id}</div>
           <div style={{ fontSize: "24px" }}>{toTitleCase(poke.name)}</div>
-          <img src={poke.img} alt="" style={{ maxWidth: "60%" }} />
+          <img src={poke.img} alt="" className={style.pokeImg} />
         </div>
       </div>
     </>
