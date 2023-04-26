@@ -37,23 +37,16 @@ export const getPokemons = () => {
 export const getPokemon = (name) => {
   return async function (dispatch) {
     const pokemon = await axios(`http://localhost:3001/pokemons?=${name}`);
-    const filteredPokemon = pokemon.data.filter(
+
+    const filteredPokemons = pokemon.data.filter(
       (poke) =>
         poke.name.toLowerCase().includes(name.toLowerCase()) ||
         poke.types.includes(name.toLowerCase())
     );
+
     return dispatch({
       type: GET_POKEMON,
-      payload: filteredPokemon,
-    });
-  };
-};
-
-export const clearPokemon = () => {
-  return async function (dispatch) {
-    return dispatch({
-      type: CLEAR_POKEMON,
-      payload: [],
+      payload: filteredPokemons,
     });
   };
 };
@@ -64,6 +57,15 @@ export const getDetail = (payload) => {
     return dispatch({
       type: GET_DETAIL,
       payload: pokemon,
+    });
+  };
+};
+
+export const clearPokemon = () => {
+  return async function (dispatch) {
+    return dispatch({
+      type: CLEAR_POKEMON,
+      payload: [],
     });
   };
 };
@@ -79,15 +81,22 @@ export const clearDetail = () => {
 
 export const createPokemon = (payload) => {
   return async function (dispatch) {
-    const pokemon = await axios
+    const response = await axios
       .post(`http://localhost:3001/pokemons`, payload)
-      .then((res) => window.alert(`CREADO CON EXITO`))
-      .catch((err) => window.alert(err.message));
-      return dispatch({
-        type: CREATE_POKEMON,
-        payload: payload,
+      .then((res) => {
+        window.alert(`CREADO CON EXITO`);
+        return res;
       })
-  }
+      .catch((err) => {
+        window.alert(err.response.data.message);
+        return err;
+      });
+    return dispatch({
+      type: CREATE_POKEMON,
+      payload: payload,
+      response: response,
+    });
+  };
 };
 
 export const addFavorites = (payload) => {

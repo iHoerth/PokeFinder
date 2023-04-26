@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getPokemons())
-  },[dispatch])  
+  }, [dispatch])  
 
   return (
     <BrowserRouter>

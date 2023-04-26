@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Form from "../../components/Form/Form";
 import NavBar from "../../components/NavBar/NavBar";
-
+import { useSelector } from "react-redux";
 import { validateCreate } from "../../helpers/validators";
 import { createPokemon } from "../../redux/actions";
+import Loading from "../../components/Loading/Loading";
 
 const Create = () => {
+  const [loading, setLoading] = useState(true);
+  const pokemons = useSelector((state) => state.pokemons);
 
+  useEffect(() => {
+    pokemons.length ? setLoading(false) : setLoading(true);
+  }, [pokemons]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
       <NavBar />
       <Form
-        formName='Create Pokemon'
+        formName="Create Pokemon"
         fields={{
           name: {
             name: "Nombre",
@@ -81,6 +91,7 @@ const Create = () => {
         }}
         action={createPokemon}
         validator={validateCreate}
+        pokemons={pokemons}
       />
     </>
   );

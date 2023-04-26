@@ -13,19 +13,26 @@ const createPokemon = async (
   type,
   subType
 ) => {
-
-  let newPoke = await Pokemon.create({
-    name,
-    img,
-    hp,
-    atk,
-    def,
-    spatk,
-    spdef,
-    speed,
-    weight,
-    height,
+  name = name.toLowerCase();
+  const [newPoke, created] = await Pokemon.findOrCreate({
+    where: { name: name },
+    defaults: {
+      img,
+      hp,
+      atk,
+      def,
+      spatk,
+      spdef,
+      speed,
+      weight,
+      height
+    }
   });
+  
+  if (!created) {
+    throw new Error(`El pokemon con el nombre ${name} ya existe en la base de datos.`);
+  }
+  
   let types = [type,subType]
   let typesDb = await Type.findAll({ where: { name: types } });
   console.log(typesDb, 'TYPES DB')

@@ -15,7 +15,7 @@ import { toTitleCase } from "../../helpers/helpers";
 
 const Detail = () => {
   const { id } = useParams();
-  const [currentId, setCurrentId] = useState(Number(id));
+  const [currentId, setCurrentId] = useState(id);
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
@@ -64,12 +64,16 @@ const Detail = () => {
         <button className={style.btnBack} onClick={() => navigate(`/pokemons`)}>
           Back
         </button>
-        <button className={style.btnBack} onClick={() => handlePrev()}>
-          PREV
-        </button>
-        <button className={style.btnBack} onClick={() => handleNext()}>
-          NEXT
-        </button>
+        {pokemon.source === "api" && (
+          <>
+            <button className={style.btnBack} onClick={() => handlePrev()}>
+              PREV
+            </button>
+            <button className={style.btnBack} onClick={() => handleNext()}>
+              NEXT
+            </button>
+          </>
+        )}
       </div>
       <div
         className={style.container}
@@ -91,9 +95,9 @@ const Detail = () => {
             </div>
           </div>
 
-            <div className={style.content}>
-              <img src={pokemon.img} alt="" />
-            </div>
+          <div className={style.content}>
+            <img src={pokemon.img} alt="" />
+          </div>
 
           <div
             className={style.section}

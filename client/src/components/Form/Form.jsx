@@ -3,7 +3,8 @@ import style from "./Form.module.css";
 import axios from "axios";
 
 import { validate } from "../../helpers/helpers";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Form = ({ formName, fields, button, action, validator }) => {
   const formFields = Object.keys(fields);
@@ -11,6 +12,7 @@ const Form = ({ formName, fields, button, action, validator }) => {
     acc[ele[0]] = ele[1]["value"];
     return acc;
   }, {});
+  const navigate = useNavigate();
 
   const [data, setData] = useState(initialState);
   const [errors, setErrors] = useState({});
@@ -24,17 +26,27 @@ const Form = ({ formName, fields, button, action, validator }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validator(data));
-
     if (Object.keys(errors).length) {
-      alert("Debe llenar todos los campos");
+      alert(
+        `${Object.keys(errors)
+          .map((key) => errors[key])
+          .join("\n")}`
+      );
     } else {
-      // axios
-      //   .post("http://localhost:3001/pokemons", data)
-      //   .then((response) => console.log(response))
-      //   .catch((error) => console.log(error));
       dispatch(action(data))
+        .then((res) => {
+          console.log(res)
+          if (res.response.status === 200) {
+            navigate(`/pokemons`);
+          }
+        })
+        .catch((e) => alert(e.message));
     }
   };
+
+  useEffect(() => {
+    setErrors(validator(data));
+  }, []);
 
   return (
     <div className={style.wrapper}>

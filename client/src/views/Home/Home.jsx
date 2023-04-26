@@ -19,7 +19,7 @@ const Home = () => {
   const search = searchParams.get("search");
 
   const dispatch = useDispatch();
-  const pokemon = useSelector((state) => state.pokemon);
+  const pokemons = useSelector((state) => state.pokemons);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pokePerPage, setPokePerPage] = useState(12);
@@ -27,7 +27,7 @@ const Home = () => {
   const lastPokeIndex = pokePerPage * currentPage;
   const firstPokeIndex = lastPokeIndex - pokePerPage;
 
-  let pokeInPage = pokemon.slice(firstPokeIndex, lastPokeIndex);
+  let pokeInPage = pokemons.slice(firstPokeIndex, lastPokeIndex);
 
   const setPageValue = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -56,12 +56,12 @@ const Home = () => {
       <NavBar setPageValue={setPageValue} />
       <div className={style.cardContainer}>
         <Pagination
-          allPoke={pokemon}
+          allPoke={pokemons}
           setPageValue={setPageValue}
           pokePerPage={pokePerPage}
           currentPage={currentPage}
         />
-        <Filter pokemon={pokemon} />
+        <Filter pokemon={pokemons} />
         {pokeInPage.map((poke) => (
           <Card key={poke.id} poke={poke} />
         ))}

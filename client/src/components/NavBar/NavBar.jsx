@@ -12,14 +12,14 @@ const NavBar = ({ setPageValue }) => {
       >
         PokeDex
       </NavLink>
+      <SearchBar setPageValue={setPageValue} />
       <NavLink
         className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
         to="/create"
       >
         Create
       </NavLink>
-      <SearchBar setPageValue={setPageValue} />
-      <NavLink
+      {/* <NavLink
         className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
         to="/login"
       >
@@ -30,7 +30,7 @@ const NavBar = ({ setPageValue }) => {
         to="/register"
       >
         Register
-      </NavLink>
+      </NavLink> */}
     </div>
   );
 };

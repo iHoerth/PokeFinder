@@ -49,9 +49,9 @@
   font-size: 32px ;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 940px) {
   .NavBar{
-    justify-content: center;
+    justify-content: space-between;
   }
   .navActive {
     display: none;

@@ -18,9 +18,12 @@ const fetchPokemon = async (nameOrId) => {
       return parsedPokemon;
     })
     .catch(() => {
+      Pokemon.findAll({ where: { name: nameOrId }, include: Type })
+        .then((res) => res)
+        .catch(() => `NO EXISTE ESE POKEMON`);
       // No es necesario el catch, es para customizarlo un poco mas al error y guiarme mejor mientras desarrollaba.
       // Sin el catch, el response es un error gigante con un message que dice "Request failed with status code 404"
-      throw new Error(`404. Pokemon '${nameOrId}' not found.`);
+      // throw new Error(`404. Pokemon '${nameOrId}' not found.`);
     });
 };
 
