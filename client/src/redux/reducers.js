@@ -8,9 +8,12 @@ import {
   GET_DETAIL,
   LOGIN,
   LOGOUT,
+  CLEAR_DETAIL,
+  CREATE_POKEMON,
 } from "./actionTypes";
 
 const initialState = {
+  allPokemon: [],
   pokemon: [],
   types: [],
   detail: {},
@@ -22,7 +25,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_POKEMONS:
-      return { ...state, pokemon: [...action.payload] };
+      return { ...state, allPokemon: [...action.payload], pokemon: [...action.payload] };
 
     case GET_POKEMON:
       return { ...state, pokemon: [...action.payload] };
@@ -36,6 +39,12 @@ export default (state = initialState, action) => {
     case GET_DETAIL:
       return { ...state, detail: action.payload };
 
+    case CLEAR_DETAIL:
+      return { ...state, detail: {} };
+
+    case CREATE_POKEMON:
+      return {...state}
+      
     case ADD_FAVORITES:
       return { ...state, myFavorites: [...state.myFavorites, action.payload] };
 

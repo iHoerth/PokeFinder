@@ -6,7 +6,9 @@ import {
   GET_POKEMON,
   GET_POKEMONS,
   GET_TYPES,
+  CREATE_POKEMON,
   CLEAR_POKEMON,
+  CLEAR_DETAIL,
   GET_DETAIL,
   LOGIN,
   LOGOUT,
@@ -34,12 +36,11 @@ export const getPokemons = () => {
 
 export const getPokemon = (name) => {
   return async function (dispatch) {
-    const pokemon = await axios(`http://localhost:3001/pokemons`);
+    const pokemon = await axios(`http://localhost:3001/pokemons?=${name}`);
     const filteredPokemon = pokemon.data.filter(
       (poke) =>
         poke.name.toLowerCase().includes(name.toLowerCase()) ||
-        poke.types.includes(name.toLowerCase()) ||
-        poke.id.toString().includes(name.toLowerCase())
+        poke.types.includes(name.toLowerCase())
     );
     return dispatch({
       type: GET_POKEMON,
@@ -58,12 +59,35 @@ export const clearPokemon = () => {
 };
 
 export const getDetail = (payload) => {
-  return function (dispatch) {
+  return async function (dispatch) {
+    const pokemon = (await axios(`http://localhost:3001/pokemons/${payload}`)).data;
     return dispatch({
       type: GET_DETAIL,
-      payload: payload,
+      payload: pokemon,
     });
   };
+};
+
+export const clearDetail = () => {
+  return async function (dispatch) {
+    return dispatch({
+      type: CLEAR_DETAIL,
+      payload: {},
+    });
+  };
+};
+
+export const createPokemon = (payload) => {
+  return async function (dispatch) {
+    const pokemon = await axios
+      .post(`http://localhost:3001/pokemons`, payload)
+      .then((res) => window.alert(`CREADO CON EXITO`))
+      .catch((err) => window.alert(err.message));
+      return dispatch({
+        type: CREATE_POKEMON,
+        payload: payload,
+      })
+  }
 };
 
 export const addFavorites = (payload) => {

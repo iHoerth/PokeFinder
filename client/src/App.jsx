@@ -33,7 +33,6 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/pokemons?name" element={<Home />} />
           <Route path="/pokemons/" element={<Home />} />
           <Route path="/pokemons/detail/:id" element={<Detail />} />
           <Route path="/create" element={<Create />} />

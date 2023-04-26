@@ -2,21 +2,13 @@
   font-size: 48px;
 }
 
-.id {
-  flex: "0.2";
-  display: "flex";
-  align-items: "center";
-  justify-content: "center";
-  background-color: #aaaaaa;
-}
-
 .container {
   text-align: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border: 1px solid rgb(79, 81, 237);
-  min-width: 500px;
-  min-height: 700px;
+  height: 600px;
+  width: 600px;
   margin: 30px;
   padding: 4px;
   gap: 4px;
@@ -24,12 +16,11 @@
 }
 
 .cardDetail {
-  text-align: center;
   display: flex;
   flex-direction: column;
+  text-align: center;
   border: 1px solid rgb(79, 81, 237);
-  width: 500px;
-  min-height: 700px;
+  height: 100%;
   padding: 4px;
   gap: 4px;
   border-radius: 8px;
@@ -38,6 +29,7 @@
 .section {
   display: flex;
   flex-direction: column;
+  height: 100%;
   flex: 1;
   padding: 4px;
   gap: 4px;
@@ -48,8 +40,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
   flex: 1;
-  max-height: 100%;
   padding: 4px;
   border-radius: 6px;
   background-color: white;
@@ -60,7 +52,6 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  max-height: 100%;
   padding: 4px;
   border-radius: 6px;
   background-color: white;

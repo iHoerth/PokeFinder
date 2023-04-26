@@ -2,9 +2,12 @@ import React from "react";
 import Form from "../../components/Form/Form";
 import NavBar from "../../components/NavBar/NavBar";
 
-import { validate } from "../../helpers/helpers";
+import { validateCreate } from "../../helpers/validators";
+import { createPokemon } from "../../redux/actions";
 
 const Create = () => {
+
+
   return (
     <>
       <NavBar />
@@ -76,7 +79,8 @@ const Create = () => {
           value: "Crear Pokemon!",
           type: "submit",
         }}
-        action={validate}
+        action={createPokemon}
+        validator={validateCreate}
       />
     </>
   );

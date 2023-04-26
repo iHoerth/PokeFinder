@@ -11,9 +11,17 @@ const fetchPokemon = async (nameOrId) => {
   if (!nameOrId) {
     throw new Error("Invalid name or ID.");
   }
-  const pokemonData = await axios.get(`${BASE_URL}/pokemon/${nameOrId.toLowerCase()}`);
-  const parsedPokemon = parsePokemon(pokemonData.data, "api");
-  return parsedPokemon;
+  return axios
+    .get(`${BASE_URL}/pokemon/${nameOrId.toLowerCase()}`)
+    .then((pokemonData) => {
+      const parsedPokemon = parsePokemon(pokemonData.data, "api");
+      return parsedPokemon;
+    })
+    .catch(() => {
+      // No es necesario el catch, es para customizarlo un poco mas al error y guiarme mejor mientras desarrollaba.
+      // Sin el catch, el response es un error gigante con un message que dice "Request failed with status code 404"
+      throw new Error(`404. Pokemon '${nameOrId}' not found.`);
+    });
 };
 
 const fetchAllPokemon = async () => {
@@ -24,7 +32,7 @@ const fetchAllPokemon = async () => {
     include: [{ model: Type }],
   });
 
-  const parsedPokemonDb = parsePokemonDb(pokemonFromDb)
+  const parsedPokemonDb = parsePokemonDb(pokemonFromDb);
 
   const pokemons = [...parsedPokemonDb, ...pokemonFromApi];
   return pokemons;

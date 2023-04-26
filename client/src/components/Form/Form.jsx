@@ -3,6 +3,7 @@ import style from "./Form.module.css";
 import axios from "axios";
 
 import { validate } from "../../helpers/helpers";
+import { useDispatch } from "react-redux";
 
 const Form = ({ formName, fields, button, action, validator }) => {
   const formFields = Object.keys(fields);
@@ -13,23 +14,25 @@ const Form = ({ formName, fields, button, action, validator }) => {
 
   const [data, setData] = useState(initialState);
   const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    setErrors(validate({ ...data, [e.target.name]: e.target.value }));
+    setErrors(validator({ ...data, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(validate(data));
+    setErrors(validator(data));
 
     if (Object.keys(errors).length) {
       alert("Debe llenar todos los campos");
     } else {
-      axios
-        .post("http://localhost:3001/pokemons", data)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
+      // axios
+      //   .post("http://localhost:3001/pokemons", data)
+      //   .then((response) => console.log(response))
+      //   .catch((error) => console.log(error));
+      dispatch(action(data))
     }
   };
 
@@ -41,9 +44,6 @@ const Form = ({ formName, fields, button, action, validator }) => {
           {formFields.map((field) => {
             return (
               <div key={field} className={style.field}>
-                {/* <label className={`${style.formFieldText}`}>
-                  {fields[field].name}
-                </label> */}
                 <input
                   name={`${field}`}
                   type={fields[field].type}

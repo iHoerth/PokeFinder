@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../../components/Form/Form.jsx";
 import NavBar from "../../components/NavBar/NavBar";
 
-import { validate } from "../../helpers/helpers.js";
+import { validateLogin } from "../../helpers/validators.js";
 
 const Login = () => {
   return (
@@ -32,7 +32,7 @@ const Login = () => {
           value: "Log in!",
           type: "submit",
         }}
-        action={validate}
+        action={validateLogin}
       />
     </div>
   );

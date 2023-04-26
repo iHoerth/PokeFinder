@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import Card from "../../components/Card/Card";
 import NavBar from "../../components/NavBar/NavBar";
 import Loading from "../../components/Loading/Loading";
 import Pagination from "../../components/Pagination/Pagination";
 
-import { getPokemons, clearPokemon } from "../../redux/actions";
+import { getPokemons, clearPokemon, getPokemon } from "../../redux/actions";
 import style from "./Home.module.css";
+import Filter from "../../components/Filter/Filter";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const search = searchParams.get("search");
 
   const dispatch = useDispatch();
   const pokemon = useSelector((state) => state.pokemon);
@@ -29,21 +33,19 @@ const Home = () => {
     setCurrentPage(pageNumber);
   };
 
-  const setSearchValue = (param) => {
-    setSearch(param);
-  };
-
   useEffect(() => {
     setLoading(true);
-    const getPoke = async () => {
+    if (search) {
+      dispatch(getPokemon(search)).then((res) => {
+        setLoading(false);
+      });
+    } else {
       dispatch(getPokemons()).then((data) => setLoading(false));
-    };
-    getPoke();
-
-    return () => {
-      dispatch(clearPokemon());
-    };
-  }, [dispatch]);
+    }
+    // return () => {
+    //   dispatch(clearPokemon());
+    // };
+  }, [dispatch, search]);
 
   if (loading) {
     return <Loading />;
@@ -51,7 +53,7 @@ const Home = () => {
 
   return (
     <div className={style.homeContainer}>
-      <NavBar setSearchValue={setSearchValue} />
+      <NavBar setPageValue={setPageValue} />
       <div className={style.cardContainer}>
         <Pagination
           allPoke={pokemon}
@@ -59,6 +61,7 @@ const Home = () => {
           pokePerPage={pokePerPage}
           currentPage={currentPage}
         />
+        <Filter pokemon={pokemon} />
         {pokeInPage.map((poke) => (
           <Card key={poke.id} poke={poke} />
         ))}

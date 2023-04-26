@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import style from "./NavBar.module.css";
 
-const NavBar = ({ setSearchValue }) => {
+const NavBar = ({ setPageValue }) => {
   return (
     <div className={style.NavBar}>
       <NavLink
@@ -18,7 +18,7 @@ const NavBar = ({ setSearchValue }) => {
       >
         Create
       </NavLink>
-      <SearchBar setSearchValue={setSearchValue} />
+      <SearchBar setPageValue={setPageValue} />
       <NavLink
         className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
         to="/login"

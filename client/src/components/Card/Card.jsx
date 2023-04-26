@@ -13,7 +13,7 @@ export const Card = ({ poke }) => {
   const types = poke.types || poke.Types
 
   const handleOnClick = () => {
-    dispatch(getDetail(poke));
+    dispatch(getDetail(poke.id));
     navigate(`/pokemons/detail/${poke.id}`);
   };
 

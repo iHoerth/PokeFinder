@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Form from "../../components/Form/Form";
 
-import { validate } from "../../helpers/helpers";
+import { validateRegister } from "../../helpers/validators";
 
 const Register = () => {
   return (
@@ -47,7 +47,7 @@ const Register = () => {
           value: "Log in!",
           type: "submit",
         }}
-        action={validate}
+        action={validateRegister}
       />
     </div>
   );

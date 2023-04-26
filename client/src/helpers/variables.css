@@ -45,5 +45,23 @@
   --flying: #C6B7F5;
   --flyingBg: #A890F0;
 
-  
+  --hp: #FF0000;
+  --hpBorder: 1px solid #A60000;
+  --hpBackground: #FF5959;
+  --attack: #F08030;
+  --attackBorder: 1px solid #9C531F;
+  --attackBackground: #F5AC78;
+  --defense:#F8D030;
+  --defenseBorder: 1px solid #A1871F;
+  --defenseBackground: #FAE078;
+  --special_attack: #6890F0;
+  --special_attackBorder: 1px solid #445E9C;
+  --special_attackBackground: #9DB7F5;
+  --special_defense: #78C850;
+  --special_defenseBorder: 1px solid #4E8234;
+  --special_defenseBackground: #A7DB8D;
+  --speed: #F85888;
+  --speedBorder: 1px solid #A13959;
+  --speedBackground: #FA92B2;
+
 }

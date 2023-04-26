@@ -3,12 +3,18 @@ const parsePokemon = (pokemonData, source) => {
     id: pokemonData.id,
     name: pokemonData.name[0].toUpperCase() + pokemonData.name.slice(1).toLowerCase(),
     img: pokemonData.sprites.other["official-artwork"]["front_default"],
-    stats: pokemonData.stats.map((stat) => {
-      return {
-        name: stat.stat.name,
-        value: stat.base_stat,
-      };
-    }),
+    stats: pokemonData.stats.reduce((obj, stat) => {
+      obj[stat.stat.name.replace("-", "_")] = stat.base_stat;
+      return obj;
+    }, {}),
+    // .map((stat) => {
+    //   console.log(stat)
+    //   const name = stat[name];
+    //   const value = stat[value];
+    //   return {
+    //     name: value,
+    //   };
+    // }),
     types: pokemonData.types.map((type) => type.type.name),
     weight: pokemonData.weight / 10,
     height: pokemonData.height / 10,
@@ -24,28 +30,22 @@ const parsePokemonDb = (pokemonFromDb) => {
       types: pokeDb.Types.map((type) => type.name),
       stats: [
         {
-          name: "hp",
-          value: hp,
+          'hp':hp,
         },
         {
-          name: "attack",
-          value: atk,
+          'attack':atk,
         },
         {
-          name: "defense",
-          value: def,
+          'defense': def,
         },
         {
-          name: "special-attack",
-          value: spatk,
+          'special_attack': spatk,
         },
         {
-          name: "special-defense",
-          value: spdef,
+          'special_defense': spdef,
         },
         {
-          name: "speed",
-          value: speed,
+          'speed': speed,
         },
       ],
     };

@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { getPokemon, getPokemons } from "../../redux/actions";
 import style from "./SearchBar.module.css";
 
-const SearchBar = () => {
+const SearchBar = ({ setPageValue }) => {
+  const [pokemon, setPokemon] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
 
@@ -13,11 +14,14 @@ const SearchBar = () => {
 
   const handleSearch = async () => {
     if (searchValue) {
-      dispatch(await getPokemon(searchValue));
-      navigate(`/pokemons?name=${searchValue}`);
+      // dispatch(getPokemon(searchValue)).then(() => {
+      // });
+      navigate(`/pokemons/?search=${searchValue}`);
+      setPageValue(1);
     } else {
       navigate(`/pokemons`);
-      dispatch(getPokemons());
+      setPageValue(1);
+      // dispatch(getPokemons());
     }
   };
 
