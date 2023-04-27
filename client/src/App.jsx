@@ -36,7 +36,6 @@ function App() {
           <Route path="/pokemons/" element={<Home />} />
           <Route path="/pokemons/detail/:id" element={<Detail />} />
           <Route path="/create" element={<Create />} />
-
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 

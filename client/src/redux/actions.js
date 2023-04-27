@@ -1,8 +1,6 @@
 import axios from "axios";
 
 import {
-  ADD_FAVORITES,
-  REMOVE_FAVORITES,
   GET_POKEMON,
   GET_POKEMONS,
   GET_TYPES,
@@ -10,8 +8,10 @@ import {
   CLEAR_POKEMON,
   CLEAR_DETAIL,
   GET_DETAIL,
-  LOGIN,
-  LOGOUT,
+  SET_FILTER,
+  CLEAR_FILTER,
+  IS_FILTERING,
+  SORT_POKEMON,
 } from "./actionTypes";
 
 export const getTypes = () => {
@@ -99,29 +99,37 @@ export const createPokemon = (payload) => {
   };
 };
 
-export const addFavorites = (payload) => {
-  return {
-    type: ADD_FAVORITES,
-    payload: payload,
+export const filterPokemons = (payload) => {
+  return async function (dispatch) {
+    return dispatch({
+      type: SET_FILTER,
+      payload: payload,
+    });
   };
 };
 
-export const removeFavorites = (payload) => {
-  return {
-    type: REMOVE_FAVORITES,
-    payload: payload,
+export const sortPokemons = (payload) => {
+  return async function (dispatch) {
+    return dispatch({
+      type: SORT_POKEMON,
+      payload: payload,
+    });
   };
 };
 
-export const login = (payload) => {
-  return {
-    type: LOGIN,
-    payload: payload,
+export const clearFilter = () => {
+  return async function (dispatch) {
+    return dispatch({
+      type: CLEAR_FILTER,
+    });
   };
 };
 
-export const logout = () => {
-  return {
-    type: LOGOUT,
+export const isFiltering = (payload) => {
+  return async function (dispatch) {
+    return dispatch({
+      type: IS_FILTERING,
+      payload: payload, // <Boolean>
+    });
   };
 };

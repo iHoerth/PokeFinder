@@ -60,82 +60,104 @@ const Detail = () => {
   return (
     <>
       <NavBar />
-      <div>
-        <button className={style.btnBack} onClick={() => navigate(`/pokemons`)}>
-          Back
-        </button>
-        {pokemon.source === "api" && (
-          <>
-            <button className={style.btnBack} onClick={() => handlePrev()}>
-              PREV
-            </button>
-            <button className={style.btnBack} onClick={() => handleNext()}>
-              NEXT
-            </button>
-          </>
-        )}
-      </div>
-      <div
-        className={style.container}
-        style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]}Bg)` }}
-      >
+      <div className={style.wrapper}>
+        <div className={style.buttonContainer}>
+          <button
+            className={style.btnBack}
+            onClick={() => navigate(`/pokemons`)}
+            // style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]}Bg)` }}
+          >
+            Back
+          </button>
+          {pokemon.source === "api" && (
+            <>
+              <button
+                className={style.btnBack}
+                onClick={() => handlePrev()}
+                // style={{
+                //   backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]}Bg)`,
+                // }}
+              >
+                PREV
+              </button>
+              <button
+                className={style.btnBack}
+                onClick={() => handleNext()}
+                // style={{
+                //   backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]}Bg)`,
+                // }}
+              >
+                NEXT
+              </button>
+            </>
+          )}
+        </div>
         <div
-          className={style.cardDetail}
+          className={style.container}
           style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]}Bg)` }}
         >
           <div
-            className={style.section}
-            style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]})` }}
+            className={style.cardDetail}
+            style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]}Bg)` }}
           >
-            <div className={style.content} style={{ fontSize: "48px" }}>
-              {pokemon.name}
+            <div
+              className={style.section}
+              style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]})` }}
+            >
+              <div className={style.content} style={{ fontSize: "32px" }}>
+                {pokemon.name}
+              </div>
+              <div className={style.content} style={{ flex: "0.2" }}>
+                #{pokemon.id}
+              </div>
             </div>
-            <div className={style.content} style={{ flex: "0.2" }}>
-              #{pokemon.id}
-            </div>
-          </div>
 
-          <div className={style.content}>
-            <img src={pokemon.img} alt="" />
-          </div>
-
-          <div
-            className={style.section}
-            style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]})` }}
-          >
-            <div className={style.title}>TYPES</div>
             <div className={style.content}>
-              <div style={{ display: "flex", gap: "32px", padding: "5px" }}>
-                {pokemon &&
-                  pokemon.types &&
-                  pokemon.types.map((type) => (
-                    <div className={style.type} style={{ backgroundColor: `${type}` }}>
-                      {toTitleCase(type)}
-                    </div>
-                  ))}
+              <img className={style.pokeImg} src={pokemon.img} alt="" />
+            </div>
+
+            <div
+              className={style.section}
+              style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]})` }}
+            >
+              <div className={style.title}>TYPES</div>
+              <div className={style.content}>
+                <div style={{ display: "flex", gap: "32px", padding: "5px" }}>
+                  {pokemon &&
+                    pokemon.types &&
+                    pokemon.types.map((type) => (
+                      <div className={style.type} style={{ backgroundColor: `${type}` }}>
+                        {toTitleCase(type)}
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", gap: "4px" }}>
+              <div
+                className={style.section}
+                style={{
+                  backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]})`,
+                }}
+              >
+                <div className={style.title}>Weight</div>
+                <div className={style.content}>{pokemon.weight} kg</div>
+              </div>
+
+              <div
+                className={style.section}
+                style={{
+                  backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]})`,
+                }}
+              >
+                <div className={style.title}>Height</div>
+                <div className={style.content}>{pokemon.height} m</div>
               </div>
             </div>
           </div>
-
-          <div style={{ display: "flex", gap: "4px" }}>
-            <div
-              className={style.section}
-              style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]})` }}
-            >
-              <div className={style.title}>Weight</div>
-              <div className={style.content}>{pokemon.weight} kg</div>
-            </div>
-
-            <div
-              className={style.section}
-              style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]})` }}
-            >
-              <div className={style.title}>Height</div>
-              <div className={style.content}>{pokemon.height} m</div>
-            </div>
-          </div>
+          {pokemon && pokemon.stats && <StatsBox stats={pokemon.stats} />}
         </div>
-        {pokemon && pokemon.stats && <StatsBox stats={pokemon.stats} />}
       </div>
     </>
   );

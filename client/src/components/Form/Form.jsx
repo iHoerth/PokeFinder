@@ -35,7 +35,7 @@ const Form = ({ formName, fields, button, action, validator }) => {
     } else {
       dispatch(action(data))
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (res.response.status === 200) {
             navigate(`/pokemons`);
           }

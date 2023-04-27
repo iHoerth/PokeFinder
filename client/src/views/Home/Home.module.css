@@ -11,10 +11,23 @@
   gap: 8px;
   width: 80vw;
   min-height: 150px;
-  margin: 20px auto;
+  margin: auto;
   border-radius: 10px;
   font-size: 18px;
+  min-width: var(--minimumWidth);
 }
+
+.filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 80vw;
+  margin: auto;
+  border-radius: 10px;
+  font-size: 18px;
+  min-width: var(--minimumWidth);
+}
+
 
 /* CREO QUE LO QUE SIGUE ERA EL CART DE LA APP ANTERIOR
 Y PUEDE SERVIR PARA LOS MEDIA QUERYS DE 400px APROX */
