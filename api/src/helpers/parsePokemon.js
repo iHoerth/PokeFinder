@@ -7,14 +7,6 @@ const parsePokemon = (pokemonData, source) => {
       obj[stat.stat.name.replace("-", "_")] = stat.base_stat;
       return obj;
     }, {}),
-    // .map((stat) => {
-    //   console.log(stat)
-    //   const name = stat[name];
-    //   const value = stat[value];
-    //   return {
-    //     name: value,
-    //   };
-    // }),
     types: pokemonData.types.map((type) => type.type.name),
     weight: pokemonData.weight / 10,
     height: pokemonData.height / 10,

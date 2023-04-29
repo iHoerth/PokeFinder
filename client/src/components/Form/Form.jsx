@@ -26,6 +26,7 @@ const Form = ({ formName, fields, button, action, validator }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validator(data));
+    
     if (Object.keys(errors).length) {
       alert(
         `${Object.keys(errors)
@@ -35,7 +36,6 @@ const Form = ({ formName, fields, button, action, validator }) => {
     } else {
       dispatch(action(data))
         .then((res) => {
-          console.log(res);
           if (res.response.status === 200) {
             navigate(`/pokemons`);
           }
@@ -44,9 +44,9 @@ const Form = ({ formName, fields, button, action, validator }) => {
     }
   };
 
-  useEffect(() => {
-    setErrors(validator(data));
-  }, []);
+  // useEffect(() => {
+  //   setErrors(validator(data));
+  // }, []);
 
   return (
     <div className={style.wrapper}>
@@ -59,11 +59,19 @@ const Form = ({ formName, fields, button, action, validator }) => {
                 <input
                   name={`${field}`}
                   type={fields[field].type}
-                  onChange={(e) => handleInputChange(e)}
+                  // onChange={(e) => handleInputChange(e)}
                   value={data[fields[field]]}
                   className={`${style.formFieldInput} ${errors[field] && style.warning} `}
                   placeholder={errors[field] || fields[field].name}
                 />
+
+              {
+                errors[field] && (
+                <div>
+                  {errors[field]}
+                </div>
+                )
+              }
               </div>
             );
           })}

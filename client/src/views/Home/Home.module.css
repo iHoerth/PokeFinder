@@ -1,20 +1,20 @@
-.homeContainer{
+.homeContainer {
   margin: 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .cardContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
   width: 80vw;
-  min-height: 150px;
-  margin: auto;
-  border-radius: 10px;
   font-size: 18px;
-  min-width: var(--minimumWidth);
+  margin: auto auto;
+  grid-template-columns: repeat(auto-fill, minmax(Min(350px), 1fr));
+  gap: 10px;
+  padding: 10px;
+  margin: 10px;
 }
 
 .filterContainer {
@@ -28,11 +28,8 @@
   min-width: var(--minimumWidth);
 }
 
-
 /* CREO QUE LO QUE SIGUE ERA EL CART DE LA APP ANTERIOR
 Y PUEDE SERVIR PARA LOS MEDIA QUERYS DE 400px APROX */
-
-
 
 .cart {
   position: fixed;
@@ -63,4 +60,13 @@ Y PUEDE SERVIR PARA LOS MEDIA QUERYS DE 400px APROX */
   border-bottom: 1px solid grey;
   font-size: 14px;
   font-weight: 500;
+}
+
+
+@media (max-width: 500px) {
+  .cardContainer{
+  /* grid-template-columns: repeat(auto-fill, minmax(Min(150px), 1fr)); */
+
+    grid-template-columns: 1fr;
+  }
 }

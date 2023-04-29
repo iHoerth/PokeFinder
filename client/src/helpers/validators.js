@@ -15,13 +15,6 @@ export const validateRegister = (inputs, form) => {
     }
   }
 
-  // if (!inputs.username) {
-  //   errors.username = "Usuario requerido";
-  // }
-
-  // if (!inputs.password) {
-  //   errors.password = "Contraseña requerida";
-  // }
   console.log(errors);
   return errors;
 };
@@ -39,12 +32,15 @@ export const validateCreate = (inputs, pokemons) => {
 
   const formFields = Object.keys(inputs);
   for (const field of formFields) {
-    if (field !== "subType" && !inputs[field]) {
+    if (!inputs[field]) {
       errors[field] = `${toTitleCase(field)} requerido`;
     }
-    if (field === "name") {
-      
-      // return;
+
+    if(field === 'name'){
+      console.log(field, 'field')
+      if(typeof inputs[field] === 'number'){
+        errors[field] = `${toTitleCase(field)} debe contener solamente letras.`
+      }
     }
   }
   // const errMsg = Object.keys(errors).map(key => errors[key]).join('\n')
@@ -54,3 +50,28 @@ export const validateCreate = (inputs, pokemons) => {
   // }
   return errors;
 };
+
+
+// export const validateCreate = (field) => {
+//   const errors = {};
+
+//   const formFields = Object.keys(inputs);
+//   for (const field of formFields) {
+//     if (!inputs[field]) {
+//       errors[field] = `${toTitleCase(field)} requerido`;
+//     }
+
+//     if(field === 'name'){
+//       console.log(field, 'field')
+//       if(typeof inputs[field] === 'number'){
+//         errors[field] = `${toTitleCase(field)} debe contener solamente letras.`
+//       }
+//     }
+//   }
+//   // const errMsg = Object.keys(errors).map(key => errors[key]).join('\n')
+//   console.log(errors, "ERRORS");
+//   // if(Object.keys(errors).length){
+//   //   alert(`${Object.keys(errors).map(key => errors[key]).join('\n')}`);
+//   // }
+//   return errors;
+// };

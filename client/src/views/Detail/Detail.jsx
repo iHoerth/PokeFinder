@@ -45,7 +45,7 @@ const Detail = () => {
   useEffect(() => {
     setLoading(true);
     dispatch(getDetail(currentId)).then((res) => {
-      console.log(res.payload, " Payload ");
+      console.log(pokemon)
       setLoading(false);
     });
     return () => {
@@ -62,31 +62,15 @@ const Detail = () => {
       <NavBar />
       <div className={style.wrapper}>
         <div className={style.buttonContainer}>
-          <button
-            className={style.btnBack}
-            onClick={() => navigate(`/pokemons`)}
-            // style={{ backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]}Bg)` }}
-          >
+          <button className={style.btnBack} onClick={() => navigate(`/pokemons`)}>
             Back
           </button>
           {pokemon.source === "api" && (
             <>
-              <button
-                className={style.btnBack}
-                onClick={() => handlePrev()}
-                // style={{
-                //   backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]}Bg)`,
-                // }}
-              >
+              <button className={style.btnBack} onClick={() => handlePrev()}>
                 PREV
               </button>
-              <button
-                className={style.btnBack}
-                onClick={() => handleNext()}
-                // style={{
-                //   backgroundColor: `var(--${pokemon && pokemon.types && pokemon.types[0]}Bg)`,
-                // }}
-              >
+              <button className={style.btnBack} onClick={() => handleNext()}>
                 NEXT
               </button>
             </>
@@ -128,6 +112,7 @@ const Detail = () => {
                     pokemon.types.map((type) => (
                       <div className={style.type} style={{ backgroundColor: `${type}` }}>
                         {toTitleCase(type)}
+                        {console.log(type)}
                       </div>
                     ))}
                 </div>

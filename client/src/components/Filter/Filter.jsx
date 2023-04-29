@@ -12,18 +12,15 @@ const Filter = ({ pokemons }) => {
   // tendria que haber alguna action para ordenar pokemones, asi actualiza el store y se renderiza Home.
 
   const sortPokemonHandler = (stat) => {
-    console.log(stat);
     const sortedPokemon = filteredPokemons.sort(
       (pokeA, pokeB) => pokeB.stats[stat] - pokeA.stats[stat]
     );
-    console.log(pokemons);
     // aca hariamos el dispatch(sortPokemons(stat)) de hecho la action seria la funcion que esta escrita aca arriba xd
     dispatch(sortPokemons(sortedPokemon));
   };
 
   const filterHandler = (value) => {
     const newFilter = filteredPokemons.filter((poke) => {
-      console.log(value);
       return poke.types.includes(value);
     });
     dispatch(filterPokemons(newFilter));
@@ -32,7 +29,6 @@ const Filter = ({ pokemons }) => {
   const filterSourceHandler = (value) => {
     if(value === 'All') return dispatch(clearFilter());
     const newFilter = filteredPokemons.filter((poke) => {
-      console.log(value);
       return poke.source === value;
     });
     dispatch(filterPokemons(newFilter));
@@ -41,10 +37,6 @@ const Filter = ({ pokemons }) => {
   const clearFilterHandler = () => {
     dispatch(clearFilter());
   };
-
-  useEffect(() => {
-    console.log(filteredPokemons);
-  }, []);
 
   return (
     <div className={style.container}>
