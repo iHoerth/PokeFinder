@@ -98,23 +98,20 @@
   border: solid red 1px;
 }
 
-.warning::placeholder {
-  color: red;
-}
-
 .danger {
   font-size: 15px;
   color: red;
 }
+/* .warning::placeholder {
+  color: red;
+} */
 
-.danger::placeholder {
+/* .danger::placeholder {
   font-size: 15px;
   color: red;
-}
-
+} */
 
 @media (max-width: 370px) {
-
   .container {
     height: 100%;
     padding: 10px;

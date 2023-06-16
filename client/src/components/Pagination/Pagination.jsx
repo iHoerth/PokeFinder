@@ -5,6 +5,7 @@ import { calculateMaxPages } from "../../helpers/calculateMaxPages";
 
 const Pagination = ({ pokePerPage, setPageValue, allPoke, currentPage }) => {
   const pages = [];
+  
   calculateMaxPages(allPoke, pokePerPage, pages);
 
   const handlerPrev = () => {

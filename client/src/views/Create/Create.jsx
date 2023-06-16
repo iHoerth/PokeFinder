@@ -14,9 +14,9 @@ const Create = () => {
     pokemons.length ? setLoading(false) : setLoading(true);
   }, [pokemons]);
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   return (
     <>
@@ -37,32 +37,32 @@ const Create = () => {
           hp: {
             name: "HP",
             type: "number",
-            value: "",
+            value: 0,
           },
-          atk: {
+          attack: {
             name: "Attack",
             type: "number",
-            value: "",
+            value: 0,
           },
-          def: {
+          defense: {
             name: "Defense",
             type: "number",
-            value: "",
+            value: 0,
           },
-          spatk: {
+          special_attack: {
             name: "Sp. Att",
             type: "number",
-            value: "",
+            value: 0,
           },
-          spdef: {
+          special_defense: {
             name: "Sp. Def",
             type: "number",
-            value: "",
+            value: 0,
           },
           speed: {
             name: "Speed",
             type: "number",
-            value: "",
+            value: 0,
           },
           weight: {
             name: "Peso",

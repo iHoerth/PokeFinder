@@ -45,7 +45,6 @@ const Detail = () => {
   useEffect(() => {
     setLoading(true);
     dispatch(getDetail(currentId)).then((res) => {
-      console.log(pokemon)
       setLoading(false);
     });
     return () => {
@@ -110,9 +109,8 @@ const Detail = () => {
                   {pokemon &&
                     pokemon.types &&
                     pokemon.types.map((type) => (
-                      <div className={style.type} style={{ backgroundColor: `${type}` }}>
+                      <div key={type} className={style.type} style={{ backgroundColor: `${type}` }}>
                         {toTitleCase(type)}
-                        {console.log(type)}
                       </div>
                     ))}
                 </div>

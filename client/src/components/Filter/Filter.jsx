@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toTitleCase } from "../../helpers/helpers";
 import { sortPokemons, filterPokemons, clearFilter } from "../../redux/actions";
 import style from './Filter.module.css'
+
 const Filter = ({ pokemons }) => {
   // const pokemon = useSelector((state) => state.pokemon);
   const dispatch = useDispatch();
