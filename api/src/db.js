@@ -4,9 +4,9 @@ require("dotenv").config();
 const PokemonModel = require("./models/Pokemon");
 const TypeModel = require("./models/Type");
 
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
   logging: false,
 });
 // ACA definimos el modelo. En el archivo models/PostsModel, lo que tenemos es una funcion que cuando se ejecute definira el modelo.
