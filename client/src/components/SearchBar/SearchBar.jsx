@@ -1,14 +1,15 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getPokemon, getPokemons } from "../../redux/actions";
-import style from "./SearchBar.module.css";
+import { getPokemon, getPokemons } from '../../redux/actions';
+import style from './SearchBar.module.css';
 
 const SearchBar = ({ setPageValue }) => {
   const [pokemon, setPokemon] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const dispatch = useDispatch();
+  const filteredPokemons = useSelector((state) => state.filteredPokemons);
 
   const navigate = useNavigate();
 
@@ -25,6 +26,12 @@ const SearchBar = ({ setPageValue }) => {
     }
   };
 
+  const handleDynamicSearch = (e) => {
+    const searchPokemons = filteredPokemons.filter((poke) =>
+      poke.name.includes(e.target.value.toLowerCase())
+    );
+  };
+
   return (
     <>
       <div className={style.container}>
@@ -35,6 +42,7 @@ const SearchBar = ({ setPageValue }) => {
           name="searchInput"
           placeholder="Name..."
           type="text"
+          onChange={handleDynamicSearch}
         />
         <button className={style.searchButton} onClick={() => handleSearch()}>
           SEARCH

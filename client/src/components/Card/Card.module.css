@@ -18,12 +18,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 260px;
+  height: 220px;
   min-width: 200px;
   flex: 1;
   flex-basis: calc(100% / 5);
   /* margin: 5px; */
-  padding: 2px;
+  padding: 10px;
   border: 1px solid rgb(122, 122, 122);
   border-radius: 4px;
   box-shadow: 0 0 2px rgb(145, 144, 144);
@@ -32,7 +32,7 @@
 }
 
 .pokeImg {
-  width: 160px;
+  width: 130px;
 }
 
 .container:hover {

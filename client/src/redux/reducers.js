@@ -10,11 +10,18 @@ import {
   IS_FILTERING,
   CLEAR_FILTER,
   SORT_POKEMON,
-} from "./actionTypes";
+} from './actionTypes';
 
 const initialState = {
   pokemons: [],
   filteredPokemons: [],
+  selectedFilters: {
+    types: [
+      ['fire', false],
+      ['water', false],
+      ['grass', false],
+    ],
+  },
   types: [],
   detail: {},
 };

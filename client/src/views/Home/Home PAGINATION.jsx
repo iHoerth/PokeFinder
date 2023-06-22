@@ -25,11 +25,11 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pokePerPage, setPokePerPage] = useState(12);
 
-  // const lastPokeIndex = pokePerPage * currentPage;
-  // const firstPokeIndex = lastPokeIndex - pokePerPage;
-  
-  // let pokeInPage = filteredPokemons.slice(firstPokeIndex, lastPokeIndex);
-  
+  const lastPokeIndex = pokePerPage * currentPage;
+  const firstPokeIndex = lastPokeIndex - pokePerPage;
+
+  let pokeInPage = filteredPokemons.slice(firstPokeIndex, lastPokeIndex);
+
   const setPageValue = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -43,6 +43,9 @@ const Home = () => {
     } else {
       dispatch(getPokemons()).then((data) => setLoading(false));
     }
+    // return () => {
+    //   dispatch(clearPokemon());
+    // };
   }, [dispatch, search]);
 
   if (loading) {
@@ -54,7 +57,7 @@ const Home = () => {
       <NavBar setPageValue={setPageValue} />
       <Filter pokemons={pokemons} />
       <div className={style.cardContainer}>
-        {filteredPokemons.map((poke) => (
+        {pokeInPage.map((poke) => (
           <Card key={poke.id} poke={poke} />
         ))}
       </div>
@@ -62,6 +65,12 @@ const Home = () => {
         className={style.filterContainer}
         style={{ display: 'flex', flexDirection: 'column', marginBottom: '0' }}
       >
+        <Pagination
+          allPoke={pokemons}
+          setPageValue={setPageValue}
+          pokePerPage={pokePerPage}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
