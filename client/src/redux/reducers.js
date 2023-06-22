@@ -12,16 +12,12 @@ import {
   SORT_POKEMON,
 } from './actionTypes';
 
+import { initialFilters } from './initialFilters';
+
 const initialState = {
   pokemons: [],
   filteredPokemons: [],
-  selectedFilters: {
-    types: [
-      ['fire', false],
-      ['water', false],
-      ['grass', false],
-    ],
-  },
+  selectedFilters: initialFilters,
   types: [],
   detail: {},
 };
@@ -38,10 +34,18 @@ export default (state = initialState, action) => {
       return { ...state, types: [...action.payload] };
 
     case SET_FILTER:
-      return { ...state, filteredPokemons: [...action.payload] };
+      return {
+        ...state,
+        filteredPokemons: [...action.payload],
+        selectedFilters: [...state.selectedFilters, ...action.payload],
+      };
 
     case CLEAR_FILTER:
-      return { ...state, filteredPokemons: [...state.pokemons] };
+      return {
+        ...state,
+        selectedFilters: { ...initialFilters },
+        filteredPokemons: [...state.pokemons],
+      };
 
     case SORT_POKEMON:
       return { ...state, filteredPokemons: [...action.payload] };
