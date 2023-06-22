@@ -14,9 +14,13 @@ import {
   SORT_POKEMON,
 } from "./actionTypes";
 
+const URL_POKEMONS = process.env.REACT_APP_URL_POKEMONS;
+const URL_TYPES = process.env.REACT_APP_URL_TYPES;
+
+
 export const getTypes = () => {
   return async function (dispatch) {
-    const response = await axios("http://localhost:3001/types");
+    const response = await axios(URL_TYPES);
     return dispatch({
       type: GET_TYPES,
       payload: response.data,
@@ -26,7 +30,7 @@ export const getTypes = () => {
 
 export const getPokemons = () => {
   return async function (dispatch) {
-    const response = await axios(`http://localhost:3001/pokemons`);
+    const response = await axios(URL_POKEMONS);
     return dispatch({
       type: GET_POKEMONS,
       payload: response.data,
@@ -36,7 +40,7 @@ export const getPokemons = () => {
 
 export const getPokemon = (name) => {
   return async function (dispatch) {
-    const pokemon = await axios(`http://localhost:3001/pokemons?=${name}`);
+    const pokemon = await axios(`${URL_POKEMONS}?=${name}`);
 
     const filteredPokemons = pokemon.data.filter(
       (poke) =>
@@ -53,7 +57,7 @@ export const getPokemon = (name) => {
 
 export const getDetail = (payload) => {
   return async function (dispatch) {
-    const pokemon = (await axios(`http://localhost:3001/pokemons/${payload}`)).data;
+    const pokemon = (await axios(`${URL_POKEMONS}/${payload}`)).data;
     return dispatch({
       type: GET_DETAIL,
       payload: pokemon,
@@ -82,7 +86,7 @@ export const clearDetail = () => {
 export const createPokemon = (payload) => {
   return async function (dispatch) {
     const response = await axios
-      .post(`http://localhost:3001/pokemons`, payload)
+      .post(URL_POKEMONS, payload)
       .then((res) => {
         window.alert(`CREADO CON EXITO`);
         return res;
