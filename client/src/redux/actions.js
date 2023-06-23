@@ -112,6 +112,7 @@ export const filterPokemons = (payload) => {
   };
 };
 
+
 export const sortPokemons = (payload) => {
   return async function (dispatch) {
     return dispatch({

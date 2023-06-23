@@ -8,6 +8,11 @@ const parsePokemon = (pokemonData, source) => {
       return obj;
     }, {}),
     types: pokemonData.types.map((type) => type.type.name),
+    egg_group: '', // esto sale de https://pokeapi.co/api/v2/pokemon-species/:id
+    evo_chain: '', // esto sale de https://pokeapi.co/api/v2/pokemon-species/:id ----> esto te da un https://pokeapi.co/api/v2/evolution-chain/:evoChainId/ 
+    // tambien se podria hacer un modelo ed evo chain y relacionarlo con los pokemones
+    //
+    is_legendary: 'true || false', // esto sale de https://pokeapi.co/api/v2/pokemon-species/:id
     weight: pokemonData.weight / 10,
     height: pokemonData.height / 10,
     source,

@@ -1,11 +1,10 @@
 export const toTitleCase = (str) => {
-  const splitStr = str.split('_')
-  let result = str[0].toUpperCase() + str.slice(1).toLowerCase()
+  const splitStr = str.split('_');
+  let result = str[0].toUpperCase() + str.slice(1).toLowerCase();
 
-
-  if(splitStr.length > 1){
-    let result = ''
-    for(let word of splitStr){
+  if (splitStr.length > 1) {
+    let result = '';
+    for (let word of splitStr) {
       result += ` ${toTitleCase(word)}`;
     }
     return result;
@@ -13,8 +12,6 @@ export const toTitleCase = (str) => {
 
   return result;
 };
-
-
 
 export const searchPokemon = (pokemonArray, e) => {
   const filteredPoke = pokemonArray.filter(
@@ -36,4 +33,10 @@ export const validate = (inputs) => {
   }
   console.log(errors);
   return errors;
+};
+
+export const compareStats = (poke, filterValue) => {
+  const { stats } = poke;
+  const { max, min, name } = filterValue;
+  return stats[name] <= max && stats[name] >= min ? true : false;
 };
