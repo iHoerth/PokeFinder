@@ -13,11 +13,11 @@ import {
 } from './actionTypes';
 
 import { initialFilters } from './initialFilters';
-import { compareStats } from '../helpers/helpers';
+import { compareStats, applySort } from '../helpers/helpers';
 
 const initialState = {
   pokemons: [],
-  sortedPokemons: [],
+  sort: { sortBy: '', order: '' },
   filteredPokemons: [],
   selectedFilters: initialFilters,
   types: [],
@@ -27,7 +27,12 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_POKEMONS:
-      return { ...state, pokemons: [...action.payload], filteredPokemons: [...action.payload] };
+      return {
+        ...state,
+        pokemons: [...action.payload],
+        sortedPokemons: [...action.payload],
+        filteredPokemons: [...action.payload],
+      };
 
     case GET_POKEMON:
       return { ...state, pokemons: [...action.payload] };
@@ -68,26 +73,40 @@ export default (state = initialState, action) => {
                 break;
             }
           }
-          // if(!passesFilter) return false; //esto para cortar de ante mano en cuanto encuentre 1 false
         }
         return passesFilter;
       });
+
+      const { sortBy, order } = state.sort;
+      const sortedAndFiltered = applySort(filteredPokemons, sortBy, order);
+
       return {
         ...state,
         selectedFilters: newFilters,
-        filteredPokemons: filteredPokemons,
-        // aca tengo que hacer la funcionalidad, iterar selected filters y en funcion de los true filtrar state.pokemons
+        filteredPokemons: sortedAndFiltered,
       };
 
     case CLEAR_FILTER:
+      const defaultOrderPokemons = applySort(state.pokemons);
       return {
         ...state,
         selectedFilters: { ...initialFilters },
-        filteredPokemons: [...state.pokemons],
+        filteredPokemons: [...defaultOrderPokemons],
       };
 
     case SORT_POKEMON:
-      return { ...state, pokemons: [...action.payload] };
+      const sortedPokemon = applySort(state.pokemons, action.payload.sortBy, action.payload.order);
+      const sortedFiltered = applySort(
+        state.filteredPokemons,
+        action.payload.sortBy,
+        action.payload.order
+      );
+      return {
+        ...state,
+        sort: { ...action.payload },
+        pokemons: [...sortedPokemon],
+        filteredPokemons: [...sortedFiltered],
+      };
 
     case CLEAR_POKEMON:
       return { ...state, pokemons: [] };

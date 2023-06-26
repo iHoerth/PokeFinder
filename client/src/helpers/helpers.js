@@ -40,3 +40,18 @@ export const compareStats = (poke, filterValue) => {
   const { max, min, name } = filterValue;
   return stats[name] <= max && stats[name] >= min ? true : false;
 };
+
+export const applySort = (pokemons, sortBy, order) => {
+  console.log('hoplaaihjsjahdfjhsaf')
+  let sortedPokemons = [];
+  if (sortBy === 'none' || !sortBy) {
+    sortedPokemons = pokemons.sort((pokeA, pokeB) => pokeA.id - pokeB.id);
+  } else {
+    sortedPokemons = pokemons.sort((pokeA, pokeB) =>
+      order === 'desc'
+        ? pokeB.stats[sortBy] - pokeA.stats[sortBy]
+        : pokeA.stats[sortBy] - pokeB.stats[sortBy]
+    );
+  }
+  return sortedPokemons;
+};
