@@ -35,20 +35,13 @@ const SearchBar = ({ setPageValue }) => {
   };
 
   const handleSearch = (e, value) => {
-
+    
   }
 
-  const handleNewFilters = async () => {
-    let newPokemons = [...pokemons];
 
-
-    dispatch(filterPokemons(newPokemons));
-    return newPokemons;
-  };
-
-  useEffect(() => {
-    handleNewFilters();
-  }, [selectedFilters]);
+  // useEffect(() => {
+  //   handleNewFilters();
+  // }, [selectedFilters]);
 
   return (
     <>
@@ -60,7 +53,6 @@ const SearchBar = ({ setPageValue }) => {
           name="searchInput"
           placeholder="Name..."
           type="text"
-          onChange={console.log('hola')}
         />
         <button className={style.searchButton} onClick={() => handleSearch()}>
           SEARCH

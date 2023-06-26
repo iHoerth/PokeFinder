@@ -17,6 +17,7 @@ import { compareStats } from '../helpers/helpers';
 
 const initialState = {
   pokemons: [],
+  sortedPokemons: [],
   filteredPokemons: [],
   selectedFilters: initialFilters,
   types: [],
@@ -36,7 +37,8 @@ export default (state = initialState, action) => {
 
     case SET_FILTER:
       const { selectedFilters, pokemons } = state;
-      const newFilters = [...selectedFilters, ...action.payload];
+      const newFilters = { ...selectedFilters, ...action.payload };
+      console.log(newFilters);
       const filteredPokemons = pokemons.filter((poke) => {
         let passesFilter = true;
         for (const filterKey in newFilters) {
@@ -49,8 +51,13 @@ export default (state = initialState, action) => {
                   passesFilter = false;
                 }
                 break;
-              case 'types':
-                if (!poke.types.includes(filterValue[0] && filterValue[1])) {
+              case 'type':
+                if (!poke.types.includes(filterValue)) {
+                  passesFilter = false;
+                }
+                break;
+              case 'subtype':
+                if (!poke.types.includes(filterValue)) {
                   passesFilter = false;
                 }
                 break;
@@ -80,7 +87,7 @@ export default (state = initialState, action) => {
       };
 
     case SORT_POKEMON:
-      return { ...state, filteredPokemons: [...action.payload] };
+      return { ...state, pokemons: [...action.payload] };
 
     case CLEAR_POKEMON:
       return { ...state, pokemons: [] };

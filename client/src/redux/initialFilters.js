@@ -2,7 +2,8 @@ export const initialFilters = {
   name: ['', false],
   generation: ['', false],
   egg_group: ['', false],
-  types: [[], false], //el primer elemento de la tupla es un array de strings
+  type: ['', false], //el primer elemento de la tupla es un array de strings
+  subtype: ['', false], //el primer elemento de la tupla es un array de strings
   stats: [
     {
       name: '',
@@ -11,4 +12,5 @@ export const initialFilters = {
     },
     false,
   ],
+  sort: ['', false]
 };

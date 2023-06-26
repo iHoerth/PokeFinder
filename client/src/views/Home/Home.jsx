@@ -54,16 +54,14 @@ const Home = () => {
     <>
       <NavBar setPageValue={setPageValue} />
       <div className={style.homeContainer}>
-        <Filter pokemons={pokemons} />
-        <div className={style.cardContainer}>
-          {filteredPokemons.map((poke) => (
-            <Card key={poke.id} poke={poke} />
-          ))}
-        </div>
-        <div
-          className={style.filterContainer}
-          style={{ display: 'flex', flexDirection: 'column', marginBottom: '0' }}
-        ></div>
+        <>
+          <Filter pokemons={pokemons} />
+          <div className={style.cardContainer}>
+            {filteredPokemons.map((poke) => (
+              <Card key={poke.id} poke={poke} />
+            ))}
+          </div>
+        </>
       </div>
       <Footer />
     </>

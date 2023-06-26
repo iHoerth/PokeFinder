@@ -3,8 +3,8 @@
   margin-top: 100px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  min-height: 769px;
 }
 
 .cardContainer {
@@ -16,6 +16,8 @@
   gap: 10px;
   padding: 10px;
   margin: 10px;
+  min-height: 600px;
+
 }
 
 .filterContainer {
