@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Form from "../../components/Form/Form";
 import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 import { useSelector } from "react-redux";
 import { validateCreate } from "../../helpers/validators";
 import { createPokemon } from "../../redux/actions";
@@ -93,6 +94,7 @@ const Create = () => {
         validator={validateCreate}
         pokemons={pokemons}
       />
+      <Footer />
     </>
   );
 };

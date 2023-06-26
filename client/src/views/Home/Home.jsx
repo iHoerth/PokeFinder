@@ -4,6 +4,7 @@ import { useParams, useLocation } from 'react-router-dom';
 
 import Card from '../../components/Card/Card';
 import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/Footer/Footer';
 import Loading from '../../components/Loading/Loading';
 import Pagination from '../../components/Pagination/Pagination';
 
@@ -27,9 +28,9 @@ const Home = () => {
 
   // const lastPokeIndex = pokePerPage * currentPage;
   // const firstPokeIndex = lastPokeIndex - pokePerPage;
-  
+
   // let pokeInPage = filteredPokemons.slice(firstPokeIndex, lastPokeIndex);
-  
+
   const setPageValue = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -50,20 +51,22 @@ const Home = () => {
   }
 
   return (
-    <div className={style.homeContainer}>
+    <>
       <NavBar setPageValue={setPageValue} />
-      <Filter pokemons={pokemons} />
-      <div className={style.cardContainer}>
-        {filteredPokemons.map((poke) => (
-          <Card key={poke.id} poke={poke} />
-        ))}
+      <div className={style.homeContainer}>
+        <Filter pokemons={pokemons} />
+        <div className={style.cardContainer}>
+          {filteredPokemons.map((poke) => (
+            <Card key={poke.id} poke={poke} />
+          ))}
+        </div>
+        <div
+          className={style.filterContainer}
+          style={{ display: 'flex', flexDirection: 'column', marginBottom: '0' }}
+        ></div>
       </div>
-      <div
-        className={style.filterContainer}
-        style={{ display: 'flex', flexDirection: 'column', marginBottom: '0' }}
-      >
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

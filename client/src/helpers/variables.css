@@ -1,10 +1,11 @@
 :root {
   --borderRadius: 4px;
   --lighterRed: #dc8888;
-  --creamRed: #E64848;
+  --creamRed: #e67474;
   --pastelpink: #ffc6dc;
   --yellow: #ffcc03;
-  --creamBlue: #1668ba;
+  --darkerBlue: #025f99;
+  --creamBlue: #2190d4;
   --lighterBlue: #4a96e1;
   --darkblue: #0c1b3a;
 

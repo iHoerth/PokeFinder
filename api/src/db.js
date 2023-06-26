@@ -33,6 +33,8 @@ sequelize
     console.log("Error:", err);
   });
 
+
+
 module.exports = {
   ...sequelize.models,
   conn: sequelize,

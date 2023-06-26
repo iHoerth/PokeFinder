@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { filterPokemons, getPokemon, getPokemons } from '../../redux/actions';
@@ -10,6 +10,7 @@ const SearchBar = ({ setPageValue }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const dispatch = useDispatch();
+  
   const selectedFilters = useSelector((state) => state.selectedFilters);
   const filteredPokemons = useSelector((state) => state.filteredPokemons);
   const pokemons = useSelector((state) => state.pokemons);
@@ -34,27 +35,17 @@ const SearchBar = ({ setPageValue }) => {
   };
 
   const handleSearch = (e, value) => {
-    
+
   }
 
   const handleNewFilters = async () => {
     let newPokemons = [...pokemons];
-    for (const key in initialFilters) {
-      const [value, flag] = initialFilters[key];
-      if (flag) {
-        newPokemons = newPokemons.filter((poke) => {
-          if(Array.isArray(value)){
-            return value.every((subValue) => poke[key].includes(subValue))
-          }
-          return poke[key].includes(value);
-        });
-      }
-    }
+
 
     dispatch(filterPokemons(newPokemons));
     return newPokemons;
   };
- 
+
   useEffect(() => {
     handleNewFilters();
   }, [selectedFilters]);
@@ -69,7 +60,7 @@ const SearchBar = ({ setPageValue }) => {
           name="searchInput"
           placeholder="Name..."
           type="text"
-          onChange={handleDynamicSearch}
+          onChange={console.log('hola')}
         />
         <button className={style.searchButton} onClick={() => handleSearch()}>
           SEARCH

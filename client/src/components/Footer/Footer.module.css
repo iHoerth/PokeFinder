@@ -12,10 +12,7 @@
   height: 100px;
   background-color: var(--creamBlue);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-  z-index: 999;
-  position: fixed;
-  top: 0;
-  margin-bottom: 500px;
+  z-index: 3;
 }
 
 .navActive{
