@@ -52,6 +52,8 @@ export default (state = initialState, action) => {
           if (active) {
             switch (filterKey) {
               case 'name':
+                console.log('CASE NAME')
+                console.log(poke.name.toLowerCase().includes(filterValue))
                 if (!poke.name.toLowerCase().includes(filterValue.toLowerCase())) {
                   passesFilter = false;
                 }

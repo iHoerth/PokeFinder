@@ -7,20 +7,10 @@ import style from './Filter.module.css';
 const Filter = ({ pokemons }) => {
   const [selectedFilters, setSelectedFilters] = useState(['', '']);
   const [selectedSort, setSelectedSort] = useState({ sortBy: '', order: 'desc' });
-  const filteredPokemons = useSelector((state) => state.filteredPokemons);
   const types = useSelector((state) => state.types);
   const dispatch = useDispatch();
 
   const sortPokemonHandler = (stat, order) => {
-    // let sortedPokemon = [];
-    // if (e.target.value === 'none') {
-    //   sortedPokemon = filteredPokemons.sort((pokeA, pokeB) => pokeA.id - pokeB.id);
-    // } else {
-    //   sortedPokemon = filteredPokemons.sort(
-    //     (pokeA, pokeB) => pokeB.stats[stat] - pokeA.stats[stat]
-    //   );
-    // }
-    // aca hariamos el dispatch(sortPokemons(stat)) de hecho la action seria la funcion que esta escrita aca arriba xd
     setSelectedSort({ sortBy: stat, order: order });
   };
 

@@ -1,47 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { sortPokemons, filterPokemons, clearFilter } from '../../redux/actions';
 
-import { filterPokemons, getPokemon, getPokemons } from '../../redux/actions';
 import style from './SearchBar.module.css';
-import { initialFilters } from '../../redux/initialFilters';
 
 const SearchBar = ({ setPageValue }) => {
   const [searchValue, setSearchValue] = useState('');
-
   const dispatch = useDispatch();
-  
-  const selectedFilters = useSelector((state) => state.selectedFilters);
-  const filteredPokemons = useSelector((state) => state.filteredPokemons);
-  const pokemons = useSelector((state) => state.pokemons);
 
-  const navigate = useNavigate();
+  const handleSearch = (e, value) => {};
 
-  // const handleSearch = async () => {
-  //   if (searchValue) {
-  //     // dispatch(getPokemon(searchValue)).then(() => {
-  //     // });
-  //     navigate(`/pokemons/?search=${searchValue}`);
-  //     setPageValue(1);
-  //   } else {
-  //     navigate(`/pokemons`);
-  //     setPageValue(1);
-  //     // dispatch(getPokemons());
-  //   }
-  // };
-
-  const handleFilterChange = (e, filterType, value) => {
-
-  };
-
-  const handleSearch = (e, value) => {
-    
-  }
-
-
-  // useEffect(() => {
-  //   handleNewFilters();
-  // }, [selectedFilters]);
+  useEffect(() => {
+    dispatch(filterPokemons({ name: [searchValue, true] }));
+  }, [searchValue]);
 
   return (
     <>
