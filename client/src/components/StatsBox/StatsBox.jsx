@@ -1,8 +1,8 @@
-import style from "./StatsBox.module.css";
+import style from './StatsBox.module.css';
 
 export const StatsBox = ({ stats }) => {
   return (
-    <div className={style.statsContainer} style={{ flexDirection: "column", gap: "2px" }}>
+    <div className={style.statsContainer} style={{ flexDirection: 'column', gap: '2px' }}>
       <div>
         <h3 className={style.title}>Stats (1 - 255)</h3>
       </div>

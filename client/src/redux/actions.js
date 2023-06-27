@@ -1,22 +1,21 @@
-import axios from "axios";
+import axios from 'axios';
 
-import {
-  GET_POKEMON,
-  GET_POKEMONS,
-  GET_TYPES,
-  CREATE_POKEMON,
-  CLEAR_POKEMON,
-  CLEAR_DETAIL,
-  GET_DETAIL,
-  SET_FILTER,
-  CLEAR_FILTER,
-  IS_FILTERING,
-  SORT_POKEMON,
-} from "./actionTypes";
+export const GET_POKEMONS = 'GET_POKEMON';
+export const GET_POKEMON = 'GET_POKEMON';
+export const GET_TYPES = 'GET_TYPES';
+export const CLEAR_POKEMON = 'CLEAR_POKEMON';
+export const CLEAR_DETAIL = 'CLEAR_DETAIL';
+export const GET_DETAIL = 'GET_DETAIL';
+export const CREATE_POKEMON = 'CREATE_POKEMON';
+export const SORT_POKEMON = 'SORT_POKEMON';
+export const SET_FILTER = 'SET_FILTER';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 
+const URL_USERS = process.env.REACT_APP_URL_USERS;
 const URL_POKEMONS = process.env.REACT_APP_URL_POKEMONS;
 const URL_TYPES = process.env.REACT_APP_URL_TYPES;
-
 
 export const getTypes = () => {
   return async function (dispatch) {
@@ -83,10 +82,10 @@ export const clearDetail = () => {
   };
 };
 
-export const createPokemon = (payload) => {
+export const createPokemon = (pokemonData) => {
   return async function (dispatch) {
     const response = await axios
-      .post(URL_POKEMONS, payload)
+      .post(URL_POKEMONS, pokemonData)
       .then((res) => {
         window.alert(`CREADO CON EXITO`);
         return res;
@@ -97,27 +96,26 @@ export const createPokemon = (payload) => {
       });
     return dispatch({
       type: CREATE_POKEMON,
-      payload: payload,
+      payload: pokemonData,
       response: response,
     });
   };
 };
 
-export const filterPokemons = (payload) => {
+export const filterPokemons = (newFilters) => {
   return async function (dispatch) {
     return dispatch({
       type: SET_FILTER,
-      payload: payload,
+      payload: newFilters,
     });
   };
 };
 
-
-export const sortPokemons = (payload) => {
+export const sortPokemons = (sort) => {
   return async function (dispatch) {
     return dispatch({
       type: SORT_POKEMON,
-      payload: payload,
+      payload: sort,
     });
   };
 };
@@ -130,11 +128,24 @@ export const clearFilter = () => {
   };
 };
 
-export const isFiltering = (payload) => {
+export const login = (loginData) => {
+  return async function (dispatch) {
+    try {
+
+    } catch (e) {
+
+    }
+    return dispatch({
+      type: LOGIN,
+      payload: loginData,
+    });
+  };
+};
+
+export const logout = () => {
   return async function (dispatch) {
     return dispatch({
-      type: IS_FILTERING,
-      payload: payload, // <Boolean>
+      type: LOGOUT,
     });
   };
 };

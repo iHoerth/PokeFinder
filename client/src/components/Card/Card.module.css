@@ -14,14 +14,14 @@
 }
 
 .container {
-  /* background-color: rgba(247, 231, 231, 0.9); */
+  background-color: rgba(255, 255, 255, 0.986);
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 170px;
   min-width: 170px;
   flex: 1;
-  flex-basis: calc(100% / 5);
+  /* flex-basis: calc(100% / 5); */
   /* margin: 5px; */
   padding: 10px;
   border: 1px solid rgb(122, 122, 122);
@@ -36,9 +36,9 @@
 }
 
 .container:hover {
-  filter: saturate(150%);
-  transform: scale(1.025);
-  box-shadow: 0 0 8px rgb(145, 144, 144);
+  /* filter: saturate(150%); */
+  transform: scale(1.017);
+  box-shadow: 2px 2px 10px rgb(48, 47, 47);
 }
 
 .typeImg {

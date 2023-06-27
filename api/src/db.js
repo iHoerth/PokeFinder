@@ -1,39 +1,43 @@
-const { Sequelize } = require("sequelize");
-require("dotenv").config();
+const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
-const PokemonModel = require("./models/Pokemon");
-const TypeModel = require("./models/Type");
+const PokemonModel = require('./models/Pokemon');
+const TypeModel = require('./models/Type');
+const UserModel = require('./models/User');
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
-  logging: false,
-});
+const sequelize = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  {
+    logging: false,
+  }
+);
 // ACA definimos el modelo. En el archivo models/PostsModel, lo que tenemos es una funcion que cuando se ejecute definira el modelo.
 // infiero que se pueden tener varias instancias de sequelize O.o
 PokemonModel(sequelize);
 TypeModel(sequelize);
+UserModel(sequelize);
 // Establecemos relaciones entre las entidades
-const { Pokemon, Type } = sequelize.models;
+const { Pokemon, Type, User } = sequelize.models;
 
-Type.belongsToMany(Pokemon, { through: "PokemonType" }, { timestamps: false });
-Pokemon.belongsToMany(Type, { through: "PokemonType" }, { timestamps: false });
+Type.belongsToMany(Pokemon, { through: 'PokemonType' }, { timestamps: false });
+Pokemon.belongsToMany(Type, { through: 'PokemonType' }, { timestamps: false });
+User.hasMany(Pokemon, { timestamps: false });
 
 sequelize
   .authenticate()
-  .then(() => console.log("Connected to the database"))
-  .catch((error) => console.error("Unable to connect to the database:", error));
+  .then(() => console.log('Connected to the database'))
+  .catch((error) => console.error('Unable to connect to the database:', error));
 
 sequelize
-  .query("SELECT current_database()")
+  .query('SELECT current_database()')
   .then((result) => {
-    console.log("Nombre de la base de datos:", result[0][0].current_database);
+    console.log('Nombre de la base de datos:', result[0][0].current_database);
   })
   .catch((err) => {
-    console.log("Error:", err);
+    console.log('Error:', err);
   });
-
-
 
 module.exports = {
   ...sequelize.models,

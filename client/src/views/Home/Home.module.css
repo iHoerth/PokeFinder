@@ -9,7 +9,7 @@
 
 .cardContainer {
   display: grid;
-  width: 80vw;
+  width: 70vw;
   font-size: 18px;
   margin: auto auto;
   grid-template-columns: repeat(auto-fill, minmax(Min(190px), 1fr));

@@ -1,10 +1,9 @@
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import SearchBar from "../SearchBar/SearchBar";
-import style from "./NavBar.module.css";
+import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import SearchBar from '../SearchBar/SearchBar';
+import style from './NavBar.module.css';
 
 const NavBar = ({ setPageValue }) => {
-
   return (
     <div className={style.NavBar}>
       <NavLink
@@ -16,9 +15,16 @@ const NavBar = ({ setPageValue }) => {
       <SearchBar setPageValue={setPageValue} />
       <NavLink
         className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
-        to="/create"
+        to="/login"
       >
-        Create
+        Login
+      </NavLink>
+
+      <NavLink
+        className={({ isActive }) => (isActive ? style.navActive : style.navInactive)}
+        to="/register"
+      >
+        Register
       </NavLink>
     </div>
   );

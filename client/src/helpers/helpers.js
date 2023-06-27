@@ -42,7 +42,6 @@ export const compareStats = (poke, filterValue) => {
 };
 
 export const applySort = (pokemons, sortBy, order) => {
-  console.log('hoplaaihjsjahdfjhsaf')
   let sortedPokemons = [];
   if (sortBy === 'none' || !sortBy) {
     sortedPokemons = pokemons.sort((pokeA, pokeB) => pokeA.id - pokeB.id);

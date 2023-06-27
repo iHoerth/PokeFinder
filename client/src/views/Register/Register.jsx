@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 import Form from "../../components/Form/Form";
 
 import { validateRegister } from "../../helpers/validators";
@@ -49,6 +50,7 @@ const Register = () => {
         }}
         action={validateRegister}
       />
+      <Footer />
     </div>
   );
 };

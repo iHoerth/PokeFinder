@@ -7,12 +7,13 @@ import {
   CLEAR_DETAIL,
   CREATE_POKEMON,
   SET_FILTER,
-  IS_FILTERING,
   CLEAR_FILTER,
   SORT_POKEMON,
-} from './actionTypes';
+  LOGIN,
+  LOGOUT,
+} from './actions';
 
-import { initialFilters } from './initialFilters';
+import { initialFilters } from './constants';
 import { compareStats, applySort } from '../helpers/helpers';
 
 const initialState = {
@@ -43,7 +44,6 @@ export default (state = initialState, action) => {
     case SET_FILTER:
       const { selectedFilters, pokemons } = state;
       const newFilters = { ...selectedFilters, ...action.payload };
-      console.log(newFilters);
       const filteredPokemons = pokemons.filter((poke) => {
         let passesFilter = true;
         for (const filterKey in newFilters) {
@@ -52,8 +52,6 @@ export default (state = initialState, action) => {
           if (active) {
             switch (filterKey) {
               case 'name':
-                console.log('CASE NAME')
-                console.log(poke.name.toLowerCase().includes(filterValue))
                 if (!poke.name.toLowerCase().includes(filterValue.toLowerCase())) {
                   passesFilter = false;
                 }
@@ -121,6 +119,12 @@ export default (state = initialState, action) => {
 
     case CREATE_POKEMON:
       return { ...state };
+
+    case LOGIN:
+      return { ...state, user: action.payload };
+
+    case LOGOUT:
+      return { ...state, user: {} };
 
     default:
       return { ...state };

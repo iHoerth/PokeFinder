@@ -14,6 +14,7 @@ import Filter from '../../components/Filter/Filter';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
+  const [offSet, setOffSet] = useState(0);
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -24,12 +25,12 @@ const Home = () => {
   const filteredPokemons = useSelector((state) => state.filteredPokemons);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokePerPage, setPokePerPage] = useState(12);
+  const [pokePerPage, setPokePerPage] = useState(56);
 
-  // const lastPokeIndex = pokePerPage * currentPage;
-  // const firstPokeIndex = lastPokeIndex - pokePerPage;
+  const lastPokeIndex = pokePerPage * currentPage;
+  const firstPokeIndex = lastPokeIndex - pokePerPage;
 
-  // let pokeInPage = filteredPokemons.slice(firstPokeIndex, lastPokeIndex);
+  let pokeInPage = filteredPokemons.slice(firstPokeIndex, lastPokeIndex);
 
   const setPageValue = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -46,6 +47,21 @@ const Home = () => {
     }
   }, [dispatch, search]);
 
+  // useEffect(() => {}, [])
+
+  useEffect(() => {
+    console.log('hola');
+    const handleScroll = (e) => {
+      const scrollHeight = e.target.documentElement.scrollHeight;
+      const currentHeight = e.target.documentElement.scrollTop + window.innerHeight;
+      if (currentHeight >= scrollHeight) {
+        setPokePerPage((prev) => prev + 56);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [pokePerPage]);
+
   if (loading) {
     return <Loading />;
   }
@@ -57,7 +73,7 @@ const Home = () => {
         <>
           <Filter pokemons={pokemons} />
           <div className={style.cardContainer}>
-            {filteredPokemons.map((poke) => (
+            {pokeInPage.map((poke) => (
               <Card key={poke.id} poke={poke} />
             ))}
           </div>

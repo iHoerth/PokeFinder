@@ -5,7 +5,7 @@ const { parsePokemon, parsePokemonDb } = require("../../helpers/parsePokemon");
 
 const BASE_URL = "https://pokeapi.co/api/v2";
 const START = 0;
-const LIMIT = 151;
+const LIMIT = 400;
 
 const fetchPokemon = async (nameOrId) => {
   if (!nameOrId) {
