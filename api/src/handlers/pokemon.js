@@ -1,6 +1,6 @@
-const { fetchPokemon, fetchAllPokemon } = require("../controllers/pokemon/fetchPokemon");
-const { fetchPokemonById } = require("../controllers/pokemon/fetchPokemonById");
-const { createPokemon } = require("../controllers/pokemon/createPokemon");
+const { fetchPokemon, fetchAllPokemon } = require('../controllers/pokemon/fetchPokemon');
+const { fetchPokemonById } = require('../controllers/pokemon/fetchPokemonById');
+const { createPokemon } = require('../controllers/pokemon/createPokemon');
 
 const getPokemon = async (req, res) => {
   const { name } = req.query;
@@ -14,7 +14,7 @@ const getPokemon = async (req, res) => {
 
 const getDetail = async (req, res) => {
   const { id } = req.params;
-  const source = isNaN(id) ? "db" : "api";
+  const source = isNaN(id) ? 'db' : 'api';
   try {
     const result = await fetchPokemonById(id, source);
     res.status(200).json(result);
@@ -25,7 +25,6 @@ const getDetail = async (req, res) => {
 
 const createPokemonHandler = async (req, res) => {
   const { name, img, hp, atk, def, spatk, spdef, speed, weight, height, type, subType } = req.body;
-  // console.log(req.body, 'REQ BODY');
   try {
     const result = await createPokemon(
       name,
@@ -41,10 +40,9 @@ const createPokemonHandler = async (req, res) => {
       type,
       subType
     );
-    // const result = await createPokemon(req.body);
     res.status(200).json(result);
   } catch (error) {
-    res.status(400).json({message: error.message});
+    res.status(400).json({ message: error.message });
   }
 };
 

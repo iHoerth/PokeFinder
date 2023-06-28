@@ -1,4 +1,4 @@
-const { Pokemon, Type } = require("../../db");
+const { Pokemon, Type } = require('../../db');
 const createPokemon = async (
   name,
   img,
@@ -25,17 +25,17 @@ const createPokemon = async (
       spdef,
       speed,
       weight,
-      height
-    }
+      height,
+    },
   });
   //
   if (!created) {
     throw new Error(`El pokemon con el nombre ${name} ya existe en la base de datos.`);
   }
-  
-  let types = [type,subType]
+
+  let types = [type, subType];
   let typesDb = await Type.findAll({ where: { name: types } });
-  console.log(typesDb, 'TYPES DB')
+  console.log(typesDb, 'TYPES DB');
   await newPoke.addTypes(typesDb);
 
   const response = await Pokemon.findByPk(newPoke.id, {

@@ -1,4 +1,4 @@
-const { Type } = require("../../db");
+const { Type } = require('../../db');
 
 const createType = async (typeArray) => {
   const types = await typeArray.map(async (type) => {

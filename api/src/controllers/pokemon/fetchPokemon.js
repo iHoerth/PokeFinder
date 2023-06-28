@@ -1,20 +1,20 @@
-const { Pokemon } = require("../../db");
-const { Type } = require("../../db");
-const axios = require("axios");
-const { parsePokemon, parsePokemonDb } = require("../../helpers/parsePokemon");
+const { Pokemon } = require('../../db');
+const { Type } = require('../../db');
+const axios = require('axios');
+const { parsePokemon, parsePokemonDb } = require('../../helpers/parsePokemon');
 
-const BASE_URL = "https://pokeapi.co/api/v2";
+const BASE_URL = 'https://pokeapi.co/api/v2';
 const START = 0;
 const LIMIT = 400;
 
 const fetchPokemon = async (nameOrId) => {
   if (!nameOrId) {
-    throw new Error("Invalid name or ID.");
+    throw new Error('Invalid name or ID.');
   }
   return axios
     .get(`${BASE_URL}/pokemon/${nameOrId.toLowerCase()}`)
     .then((pokemonData) => {
-      const parsedPokemon = parsePokemon(pokemonData.data, "api");
+      const parsedPokemon = parsePokemon(pokemonData.data, 'api');
       return parsedPokemon;
     })
     .catch(() => {
