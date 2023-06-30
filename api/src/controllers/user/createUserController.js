@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const createUserController = async (name, email, password) => {
   console.log(' * CREATE USE CONTROLLER * ')
   if (!name || !email || !password) throw new Error(`Todos los campos son requeridos.`);
-
+  console.log(password)
   const hashedPassword = await bcrypt.hash(password, 10)
 
   const [newUser, created] = await User.findOrCreate({

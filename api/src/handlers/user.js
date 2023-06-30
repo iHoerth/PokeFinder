@@ -7,10 +7,11 @@ const { loginUser } = require('../controllers/user/loginUser');
 const loginUserHandler = async (req, res) => {
   const { email, password } = req.body;
   try {
+    console.log(email, password);
     const result = await loginUser(email, password);
     res.status(200).json(result);
   } catch (e) {
-    res.status(400).json(e);
+    res.status(400).json(e.message);
   }
 };
 
